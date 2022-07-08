@@ -1,0 +1,14 @@
+#container {
+    display: flex;
+    color: red;
+    flex-direction: column;
+}
+
+#main {
+    display: flex;
+}
+
+#rightSection {
+    flex:4;
+    background-color: aqua;
+}
