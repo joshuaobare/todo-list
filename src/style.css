@@ -12,7 +12,7 @@ body {
 }
 
 #rightSection {
-    flex:4;
+    flex-grow:4;
     background-color: aqua;
 }
 

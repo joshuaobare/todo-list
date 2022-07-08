@@ -1,4 +1,5 @@
 import './style.css'
+import {title,description,dueDate,priority,rightSection} from './DOM.js'
 
 class Todos {
     constructor(title, description,dueDate,priority){
@@ -9,3 +10,9 @@ class Todos {
     }
 
 }
+
+function inputs() {
+    let newTodo = new Todos(title.value,description.value,dueDate.value,priority.value)
+
+}
+ 
