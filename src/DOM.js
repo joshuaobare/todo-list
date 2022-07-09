@@ -1,8 +1,33 @@
-const title= document.querySelector("#title")
-const description= document.querySelector("#description")
-const dueDate= document.querySelector("#dueDate")
-const priority= document.querySelector("#priority")
+import {inputs,todoList} from "./controller.js"
+
+let title 
+let description 
+let dueDate 
+let priority
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#submit")
 
-export {title,description,dueDate,priority,rightSection}
+
+
+
+
+
+function sub(e) {
+    e.preventDefault()
+    
+    title = document.querySelector("#title").value
+    description = document.querySelector("#description").value
+    dueDate = document.querySelector("#dueDate").value
+    priority= document.querySelector('input[name="priority"]:checked').value
+    inputs()
+}
+
+subBtn.addEventListener("click", function(e) {
+    
+    sub(e)
+    document.querySelector("form").reset()
+    console.log(todoList)
+
+})
+
+export {title, description, dueDate, priority,rightSection,sub}
