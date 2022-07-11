@@ -17,12 +17,6 @@ function inputs() {
     todoList.push(newTodo)
 }
 
-function displayTodos() {
-    rightSection.innerHTML = ""
 
-   /* for (let x=0 ; x< todoList.length ;x++) {
-        
 
-    } */}
-
-export {displayTodos,inputs, todoList}
+export {inputs, todoList}

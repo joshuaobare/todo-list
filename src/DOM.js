@@ -4,12 +4,9 @@ let title
 let description 
 let dueDate 
 let priority
+const todos = []
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#submit")
-
-
-
-
 
 
 function sub(e) {
@@ -22,11 +19,31 @@ function sub(e) {
     inputs()
 }
 
+function displayTodos() {
+    rightSection.innerHTML = ""
+
+    for (let x=0 ; x< todoList.length ;x++) {
+        
+        todos[x] = document.createElement("div")
+        const todo = document.createElement("div")
+
+        for(let y in todoList[x]) {
+            todo.innerHTML += todoList[x][y]
+        }
+        
+
+        todos[x].appendChild(todo)
+    rightSection.appendChild(todos[x])
+    } 
+    
+}
+
 subBtn.addEventListener("click", function(e) {
     
     sub(e)
     document.querySelector("form").reset()
     console.log(todoList)
+    displayTodos()
 
 })
 
