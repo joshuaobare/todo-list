@@ -28,12 +28,12 @@ function displayTodos() {
         const todo = document.createElement("div")
 
         for(let y in todoList[x]) {
-            todo.innerHTML += todoList[x][y]
+            todo.innerHTML += todoList[x][y] + "&emsp;"
         }
         
 
         todos[x].appendChild(todo)
-    rightSection.appendChild(todos[x])
+        rightSection.appendChild(todos[x])
     } 
     
 }
