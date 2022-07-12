@@ -1,13 +1,14 @@
-import {title, description, dueDate, priority,rightSection,sub} from './DOM.js'
+import {title, description, dueDate, priority} from './DOM.js'
 
 const todoList = []
  
 function Projects(name,project) {
     this.name = name
     this.project = project
+    this.info = function() {
+        console.log(name)
+    }
 }
-
-
 
 class Todos {
     constructor(title, description,dueDate,priority){
@@ -19,12 +20,17 @@ class Todos {
 
 }
 
+function createProjects() {
+
+}
+
 function inputs() {
     let newTodo = new Todos(title,description,dueDate,priority)
     todoList.push(newTodo)
     const defaultProject = new Projects("default",newTodo)
-    console.log(defaultProject)
+    
 }
+
 
 
 

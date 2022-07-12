@@ -6,8 +6,8 @@ let dueDate
 let priority
 const todos = []
 const rightSection = document.querySelector("#rightSection")
-const subBtn = document.querySelector("#submit")
-
+const subBtn = document.querySelector("#todo-form-submit")
+const projectSub = document.querySelector("#project-submit")
 
 function sub(e) {
     e.preventDefault()
@@ -29,6 +29,9 @@ function displayTodos() {
 
         for(let y in todoList[x]) {
             todo.innerHTML += todoList[x][y] + "&emsp;"
+        
+
+        
         }
         
 
