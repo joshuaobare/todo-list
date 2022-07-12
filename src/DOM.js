@@ -4,19 +4,25 @@ let title
 let description 
 let dueDate 
 let priority
+let project
 const todos = []
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
-const projectSub = document.querySelector("#project-submit")
+const projectBtn = document.querySelector("#project-submit")
+
 
 function sub(e) {
     e.preventDefault()
-    
     title = document.querySelector("#title").value
     description = document.querySelector("#description").value
     dueDate = document.querySelector("#dueDate").value
     priority= document.querySelector('input[name="priority"]:checked').value
     inputs()
+}
+
+function projName(e){
+    e.preventDefault()
+    project = document.querySelector("#project").value
 }
 
 function displayTodos() {
@@ -44,10 +50,17 @@ function displayTodos() {
 subBtn.addEventListener("click", function(e) {
     
     sub(e)
-    document.querySelector("form").reset()
+    document.querySelector(".todo-form").reset()
     console.log(todoList)
     displayTodos()
 
 })
+
+projectBtn.addEventListener("click", function(e) {
+    projName(e)
+    document.querySelector(".project-form").reset()
+
+})
+
 
 export {title, description, dueDate, priority,rightSection,sub}
