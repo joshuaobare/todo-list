@@ -24,10 +24,10 @@ function createProjects() {
 
 }
 
-function inputs() {
+function inputs(name) {
     let newTodo = new Todos(title,description,dueDate,priority)
     todoList.push(newTodo)
-    const defaultProject = new Projects("default",newTodo)
+    const defaultProject = new Projects(name,newTodo)
     
 }
 

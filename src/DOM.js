@@ -5,6 +5,7 @@ let description
 let dueDate 
 let priority
 let project
+let projectTitle
 const todos = []
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
@@ -22,7 +23,7 @@ function sub(e) {
 
 function projName(e){
     e.preventDefault()
-    project = document.querySelector("#project").value
+    project = document.querySelector("#project-name").value
     return project
 }
 
@@ -59,8 +60,9 @@ subBtn.addEventListener("click", function(e) {
 
 projectBtn.addEventListener("click", function(e) {
     projName(e)
-    let projectTitle = projName(e)
+    projectTitle = projName(e)
     document.querySelector(".project-form").reset()
+    
     const newProj = document.createElement("div")
     newProj.innerHTML += projectTitle
     projSection.appendChild(newProj)
