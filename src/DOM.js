@@ -9,7 +9,7 @@ const todos = []
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const projectBtn = document.querySelector("#project-submit")
-
+const projSection = document.querySelector("#projectSection")
 
 function sub(e) {
     e.preventDefault()
@@ -23,6 +23,7 @@ function sub(e) {
 function projName(e){
     e.preventDefault()
     project = document.querySelector("#project").value
+    return project
 }
 
 function displayTodos() {
@@ -58,7 +59,11 @@ subBtn.addEventListener("click", function(e) {
 
 projectBtn.addEventListener("click", function(e) {
     projName(e)
+    let projectTitle = projName(e)
     document.querySelector(".project-form").reset()
+    const newProj = document.createElement("div")
+    newProj.innerHTML += projectTitle
+    projSection.appendChild(newProj)
 
 })
 
