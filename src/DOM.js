@@ -11,6 +11,8 @@ const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const projectBtn = document.querySelector("#project-submit")
 const projSection = document.querySelector("#projectSection")
+const createproject = document.querySelector("#createproject")
+const projnameform = document.querySelector("#proj-name-form")
 
 function sub(e) {
     e.preventDefault()
@@ -66,8 +68,12 @@ projectBtn.addEventListener("click", function(e) {
     const newProj = document.createElement("div")
     newProj.innerHTML += projectTitle
     projSection.appendChild(newProj)
+    projnameform.classList.add("form")
 
 })
 
+createproject.addEventListener("click", function(e) {
+    projnameform.classList.remove("form")
+})
 
 export {title, description, dueDate, priority,rightSection,sub}
