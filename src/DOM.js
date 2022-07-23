@@ -7,12 +7,14 @@ let priority
 let project
 let projectTitle
 const todos = []
-const rightSection = document.querySelector("#rightSection")
+const projectContainer = document.querySelector("#projectContainer")
 const subBtn = document.querySelector("#todo-form-submit")
 const projectBtn = document.querySelector("#project-submit")
 const projSection = document.querySelector("#projectSection")
 const createproject = document.querySelector("#createproject")
 const projnameform = document.querySelector("#proj-name-form")
+const taskadder = document.querySelector("#addtask")
+const todoform = document.querySelector("#main-form")
 
 function sub(e) {
     e.preventDefault()
@@ -30,7 +32,7 @@ function projName(e){
 }
 
 function displayTodos() {
-    rightSection.innerHTML = ""
+    projectContainer.innerHTML = ""
 
     for (let x=0 ; x< todoList.length ;x++) {
         
@@ -46,7 +48,7 @@ function displayTodos() {
         
 
         todos[x].appendChild(todo)
-        rightSection.appendChild(todos[x])
+        projectContainer.appendChild(todos[x])
     } 
     
 }
@@ -56,6 +58,7 @@ subBtn.addEventListener("click", function(e) {
     sub(e)
     document.querySelector(".todo-form").reset()
     console.log(todoList)
+    todoform.classList.add("form")
     displayTodos()
 
 })
@@ -66,6 +69,8 @@ projectBtn.addEventListener("click", function(e) {
     document.querySelector(".project-form").reset()
     
     const newProj = document.createElement("div")
+    newProj.setAttribute("id","projecttitle")
+    newProj.setAttribute("class",projectTitle)
     newProj.innerHTML += projectTitle
     projSection.appendChild(newProj)
     projnameform.classList.add("form")
@@ -76,4 +81,8 @@ createproject.addEventListener("click", function(e) {
     projnameform.classList.remove("form")
 })
 
-export {title, description, dueDate, priority,rightSection,sub}
+taskadder.addEventListener("click", function(e) {
+    todoform.classList.remove("form")
+})
+
+export {title, description, dueDate, priority,sub}
