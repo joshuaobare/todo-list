@@ -20,6 +20,16 @@ const todoform = document.querySelector("#main-form")
 const projecttab = document.querySelectorAll(".projectname")
 
 
+function elementCreator(el,type,class_name,id_name,innertext) {
+    el = document.createElement(type)
+    el.classList.add(class_name)
+    el.setAttribute("id",id_name)
+    el.textContent = innertext
+
+    return el
+
+}
+
 function sub(e) {
     e.preventDefault()
     title = document.querySelector("#title").value
@@ -45,9 +55,7 @@ function displayTodos() {
 
         for(let y in todoList[x]) {
             todo.innerHTML += todoList[x][y] + "&emsp;"
-        
-
-        
+                
         }
         
 
@@ -61,8 +69,13 @@ function projTab(e) {
     rightSection.innerHTML = ""
     const projectHeader = document.createElement("h1")
     projectHeader.innerHTML = e.target.id
-    console.log(e)
+   
+    const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
+
+    
     rightSection.appendChild(projectHeader)
+    rightSection.appendChild(addTask)
+    
 }
 
 subBtn.addEventListener("click", function(e) {
