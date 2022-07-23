@@ -16,7 +16,7 @@ body {
     background-color: aqua;
 }
 
-.todo-form {
+.todo-form , .project-todo-form{
     display: flex;
     flex-direction: column;
     gap:10px;

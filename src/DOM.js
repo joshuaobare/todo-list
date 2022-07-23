@@ -1,22 +1,33 @@
-import {inputs,todoList} from "./controller.js"
+import {inputs,todoList,createProjects} from "./controller.js"
 
 let title 
 let description 
 let dueDate 
 let priority
+
+let title2
+let description2
+let dueDate2
+let priority2
+
 let project
 let projectTitle
+let currentproject
 
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
+const subBtn2 = document.querySelector("#project-todo-form-submit")
+
 const projectBtn = document.querySelector("#project-submit")
 const projSection = document.querySelector("#projectSection")
 const createproject = document.querySelector("#createproject")
 const projnameform = document.querySelector("#proj-name-form")
 const taskadder = document.querySelector("#addtask")
 const todoform = document.querySelector("#main-form")
+const projecttodoform = document.querySelector("#secondary-form")
+
 const projecttab = document.querySelectorAll(".projectname")
 
 
@@ -37,6 +48,15 @@ function sub(e) {
     dueDate = document.querySelector("#dueDate").value
     priority= document.querySelector('input[name="priority"]:checked').value
     inputs()
+}
+
+function projSub(e) {
+    e.preventDefault()
+    title2 = document.querySelector("#title").value
+    description2 = document.querySelector("#description").value
+    dueDate2 = document.querySelector("#dueDate").value
+    priority2 = document.querySelector('input[name="priority"]:checked').value
+    createProjects(projTab)
 }
 
 function projName(e){
@@ -68,15 +88,21 @@ function displayTodos() {
 function projTab(e) {
     rightSection.innerHTML = ""
     const projectHeader = document.createElement("h1")
+    
     projectHeader.innerHTML = e.target.id
-   
-    const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
+    
+    const addTask = elementCreator("addTask","button",e.target.id,"proj-task-btn","Add Task")
 
    
     rightSection.appendChild(projectHeader)
+    rightSection.appendChild(projectContainer) 
     rightSection.appendChild(addTask)
+
+    return e.target.id
     
 }
+
+currentproject = projTab()
 
 subBtn.addEventListener("click", function(e) {
     
@@ -87,6 +113,14 @@ subBtn.addEventListener("click", function(e) {
     displayTodos()
 
 })
+
+subBtn2.addEventListener("click", function(e){
+    projSub(e)
+    document.querySelector(".project-todo-form").reset()
+    projecttodoform.classList.add("form")
+    
+
+} )
 
 projectBtn.addEventListener("click", function(e) {
     projName(e)
@@ -119,8 +153,8 @@ projSection.addEventListener('click', function(e) {
 
 rightSection.addEventListener('click', function(e) {
     console.log(e) 
-    if(e.target.classList.contains("proj-task-btn")) {
-        todoform.classList.remove("form")
+    if(e.target.id ="proj-task-btn") {
+        projecttodoform.classList.remove("form")
            
     }
   } );
@@ -141,4 +175,4 @@ projecttab.forEach((proj) => {
 */
 
 
-export {title, description, dueDate, priority,sub}
+export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2}

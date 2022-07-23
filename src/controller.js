@@ -1,4 +1,4 @@
-import {title, description, dueDate, priority} from './DOM.js'
+import {title, description, dueDate, priority,title2, description2,dueDate2,priority2} from './DOM.js'
 
 const todoList = []
  
@@ -20,9 +20,11 @@ class Todos {
 
 }
 
-function createProjects() {
-    
-
+function createProjects(name) {
+    let todo = new Todos(title2, description2,dueDate2,priority2)
+    const proj = new Projects(name,todo)
+    console.log(todo.title)
+    console.log(proj)
 }
 
 function inputs(name) {
@@ -35,4 +37,4 @@ function inputs(name) {
 
 
 
-export {inputs, todoList}
+export {inputs,createProjects, todoList}
