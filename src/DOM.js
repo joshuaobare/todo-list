@@ -6,8 +6,10 @@ let dueDate
 let priority
 let project
 let projectTitle
+
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
+const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const projectBtn = document.querySelector("#project-submit")
 const projSection = document.querySelector("#projectSection")
@@ -15,6 +17,8 @@ const createproject = document.querySelector("#createproject")
 const projnameform = document.querySelector("#proj-name-form")
 const taskadder = document.querySelector("#addtask")
 const todoform = document.querySelector("#main-form")
+const projecttab = document.querySelectorAll(".projectname")
+
 
 function sub(e) {
     e.preventDefault()
@@ -53,6 +57,14 @@ function displayTodos() {
     
 }
 
+function projTab(e) {
+    rightSection.innerHTML = ""
+    const projectHeader = document.createElement("h1")
+    projectHeader.innerHTML = e.target.id
+    console.log(e)
+    rightSection.appendChild(projectHeader)
+}
+
 subBtn.addEventListener("click", function(e) {
     
     sub(e)
@@ -69,8 +81,8 @@ projectBtn.addEventListener("click", function(e) {
     document.querySelector(".project-form").reset()
     
     const newProj = document.createElement("div")
-    newProj.setAttribute("id","projecttitle")
-    newProj.setAttribute("class",projectTitle)
+    newProj.setAttribute("class","projectname")
+    newProj.setAttribute("id",projectTitle)
     newProj.innerHTML += projectTitle
     projSection.appendChild(newProj)
     projnameform.classList.add("form")
@@ -84,5 +96,25 @@ createproject.addEventListener("click", function(e) {
 taskadder.addEventListener("click", function(e) {
     todoform.classList.remove("form")
 })
+
+projSection.addEventListener('click', function(e) {
+    if(e.target.classList.contains('projectname')) {
+        projTab(e);
+        console.log(e)
+    };
+  } );
+
+/*
+projecttab.forEach((proj) => {
+
+    proj.addEventListener("click", function(e) {
+    
+       // projTab(e)
+        //console.log(e)
+        console.log("nini wewe")
+    })
+})
+*/
+
 
 export {title, description, dueDate, priority,sub}
