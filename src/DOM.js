@@ -72,7 +72,7 @@ function projTab(e) {
    
     const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
 
-    
+   
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(addTask)
     
@@ -113,9 +113,20 @@ taskadder.addEventListener("click", function(e) {
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
         projTab(e);
-        console.log(e)
+        console.log(this)
     };
   } );
+
+rightSection.addEventListener('click', function(e) {
+    console.log(e) 
+    if(e.target.classList.contains("proj-task-btn")) {
+        todoform.classList.remove("form")
+           
+    }
+  } );
+
+ 
+
 
 /*
 projecttab.forEach((proj) => {
