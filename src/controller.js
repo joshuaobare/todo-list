@@ -21,7 +21,7 @@ class Todos {
 }
 
 function createProjects(name) {
-    let todo = new Todos(title2, description2,dueDate2,priority2)
+    let todo = new Todos(name, description2,dueDate2,priority2)
     const proj = new Projects(name,todo)
     console.log(todo.title)
     console.log(proj)

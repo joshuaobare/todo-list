@@ -4,6 +4,7 @@ let title
 let description 
 let dueDate 
 let priority
+let projnamecont
 
 let title2
 let description2
@@ -52,11 +53,11 @@ function sub(e) {
 
 function projSub(e) {
     e.preventDefault()
-    title2 = document.querySelector("#title").value
+    //title2 = document.querySelector("#title").value
     description2 = document.querySelector("#description").value
     dueDate2 = document.querySelector("#dueDate").value
     priority2 = document.querySelector('input[name="priority"]:checked').value
-    createProjects(projTab)
+    createProjects(projnamecont)
 }
 
 function projName(e){
@@ -91,6 +92,7 @@ function projTab(e) {
     
     projectHeader.innerHTML = e.target.id
     
+
     const addTask = elementCreator("addTask","button",e.target.id,"proj-task-btn","Add Task")
 
    
@@ -102,7 +104,7 @@ function projTab(e) {
     
 }
 
-currentproject = projTab()
+
 
 subBtn.addEventListener("click", function(e) {
     
@@ -147,19 +149,19 @@ taskadder.addEventListener("click", function(e) {
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
         projTab(e);
-        console.log(this)
+        
     };
   } );
 
 rightSection.addEventListener('click', function(e) {
     console.log(e) 
-    if(e.target.id ="proj-task-btn") {
+    if(e.target.id == "proj-task-btn") {
         projecttodoform.classList.remove("form")
-           
+        projnamecont = e.target.className   
     }
   } );
 
- 
+  
 
 
 /*
