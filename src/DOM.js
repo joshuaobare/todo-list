@@ -93,7 +93,7 @@ function projTab(e) {
     projectHeader.innerHTML = e.target.id
     
 
-    const addTask = elementCreator("addTask","button",e.target.id,"proj-task-btn","Add Task")
+    const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
 
    
     rightSection.appendChild(projectHeader)
@@ -149,6 +149,7 @@ taskadder.addEventListener("click", function(e) {
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
         projTab(e);
+        projnamecont = e.target.id
         
     };
   } );
@@ -157,7 +158,7 @@ rightSection.addEventListener('click', function(e) {
     console.log(e) 
     if(e.target.id == "proj-task-btn") {
         projecttodoform.classList.remove("form")
-        projnamecont = e.target.className   
+           
     }
   } );
 
