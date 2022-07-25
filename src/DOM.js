@@ -1,4 +1,4 @@
-import {inputs,todoList,createProjects} from "./controller.js"
+import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 
 let title 
 let description 
@@ -29,6 +29,7 @@ const taskadder = document.querySelector("#addtask")
 const todoform = document.querySelector("#main-form")
 const projecttodoform = document.querySelector("#secondary-form")
 const home = document.querySelector("#home")
+//const homeheader = document.querySelector("#homeHeading")
 const projecttab = document.querySelectorAll(".projectname")
 
 
@@ -86,10 +87,32 @@ function displayTodos() {
     
 }
 
+function displayProjects(e) {
+    projectContainer.innerHTML = ""
+
+    for (let x=0 ; x < myprojects.length ; x++) {
+
+        todos[x] = document.createElement("div")
+        const todo = document.createElement("div")
+
+        for(let y in myprojects[x]) {
+            console.log(e)
+            if(y == e) {
+                todo.innerHTML += myprojects[x][y] + "&emsp;"
+
+            }
+        }
+
+        todos[x].appendChild(todo)
+        projectContainer.appendChild(todos[x])
+    }
+
+}
+
 function projTab(e) {
     rightSection.innerHTML = ""
     const projectHeader = document.createElement("h1")
-    
+    projectHeader.classList.add("homeHeading")
     projectHeader.innerHTML = e.target.id
     
 
@@ -102,6 +125,15 @@ function projTab(e) {
 
     return e.target.id
     
+}
+
+function hmeBtn() {
+    rightSection.innerHTML = ""
+    const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
+    rightSection.appendChild(homeheader)
+    rightSection.appendChild(projectContainer)
+    displayTodos()
+    rightSection.appendChild(taskadder)
 }
 
 
@@ -120,6 +152,7 @@ subBtn2.addEventListener("click", function(e){
     projSub(e)
     document.querySelector(".project-todo-form").reset()
     projecttodoform.classList.add("form")
+    displayProjects(projnamecont)
     
 
 } )
@@ -149,8 +182,7 @@ taskadder.addEventListener("click", function(e) {
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
         projTab(e);
-        projnamecont = e.target.id
-        
+        projnamecont = e.target.id               
     };
   } );
 
@@ -162,7 +194,10 @@ rightSection.addEventListener('click', function(e) {
     }
   } );
 
-  home.addEventListener("click",displayTodos)
+  home.addEventListener("click",hmeBtn) 
+    
+      
+
   
 
 
