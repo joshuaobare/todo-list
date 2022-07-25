@@ -28,6 +28,6 @@ body {
     display: none;
 }
 
-.projectname {
+.projectname , .home {
     cursor: pointer;
 }

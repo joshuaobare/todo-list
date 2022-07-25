@@ -28,7 +28,7 @@ const projnameform = document.querySelector("#proj-name-form")
 const taskadder = document.querySelector("#addtask")
 const todoform = document.querySelector("#main-form")
 const projecttodoform = document.querySelector("#secondary-form")
-
+const home = document.querySelector("#home")
 const projecttab = document.querySelectorAll(".projectname")
 
 
@@ -54,9 +54,9 @@ function sub(e) {
 function projSub(e) {
     e.preventDefault()
     //title2 = document.querySelector("#title").value
-    description2 = document.querySelector("#description").value
-    dueDate2 = document.querySelector("#dueDate").value
-    priority2 = document.querySelector('input[name="priority"]:checked').value
+    description2 = document.querySelector("#description2").value
+    dueDate2 = document.querySelector("#dueDate2").value
+    priority2 = document.querySelector('input[name="priority2"]:checked').value
     createProjects(projnamecont)
 }
 
@@ -162,6 +162,7 @@ rightSection.addEventListener('click', function(e) {
     }
   } );
 
+  home.addEventListener("click",displayTodos)
   
 
 
