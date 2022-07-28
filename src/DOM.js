@@ -87,24 +87,38 @@ function displayTodos() {
     
 }
 
+const iterate = (obj,container) => {
+    Object.keys(obj).forEach(key => {
+
+    console.log(`key: ${key}, value: ${obj[key]}`)
+    
+    
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+            iterate(obj[key])
+        }
+    else {
+        try{
+            container.textContent += `${key} and ${obj[key]}`
+        }
+        catch {
+            container.textContent += `${key} and ${obj[key]}`
+
+            
+        }
+            
+    }
+
+
+    })
+}
+
 function displayProjects(e) {
     projectContainer.innerHTML = ""
 
     for (let x=0 ; x < myprojects.length ; x++) {
 
-        todos[x] = document.createElement("div")
-        const todo = document.createElement("div")
-
-        for(let y in myprojects[x]) {
-            console.log(e)
-            if(y == e) {
-                todo.innerHTML += myprojects[x][y] + "&emsp;"
-
-            }
-        }
-
-        todos[x].appendChild(todo)
-        projectContainer.appendChild(todos[x])
+        iterate(myprojects[x],projectContainer)
+        
     }
 
 }
