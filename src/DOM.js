@@ -1,20 +1,7 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 
-let title 
-let description 
-let dueDate 
-let priority
-let projnamecont
-let projarr
-
-let title2
-let description2
-let dueDate2
-let priority2
-
-let project
-let projectTitle
-let currentproject
+let title, description, dueDate, priority,projnamecont,projarr
+let title2, description2,dueDate2,priority2, project , projectTitle , currentproject
 
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
@@ -32,7 +19,7 @@ const projecttodoform = document.querySelector("#secondary-form")
 const home = document.querySelector("#home")
 //const homeheader = document.querySelector("#homeHeading")
 const projecttab = document.querySelectorAll(".projectname")
-
+const projectHeader = document.createElement("h1")
 
 function elementCreator(el,type,class_name,id_name,innertext) {
     el = document.createElement(type)
@@ -46,7 +33,7 @@ function elementCreator(el,type,class_name,id_name,innertext) {
 
 const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
 const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
-const projectHeader = document.createElement("h1")
+
 
 function sub(e) {
     e.preventDefault()
@@ -132,15 +119,8 @@ const iterate = (obj,tab) => {
                 projectContainer.innerHTML += `${obj[key]} <br>`
             }
             
-        }
-        
-
-            
-    }
-            
-    
-
-
+        }            
+    }      
     )
 }
 
