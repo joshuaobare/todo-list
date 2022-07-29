@@ -43,6 +43,9 @@ function elementCreator(el,type,class_name,id_name,innertext) {
 
 }
 
+const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
+const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
+
 function sub(e) {
     e.preventDefault()
     title = document.querySelector("#title").value
@@ -87,7 +90,14 @@ function displayTodos() {
     
 }
 
-const iterate = (obj,container) => {
+const iterate = (obj) => {
+    rightSection.innerHTML = ""
+    
+    homeheader.innerHTML = projnamecont
+    rightSection.appendChild(homeheader)
+    rightSection.appendChild(projectContainer)
+    rightSection.appendChild(addTask)
+
     Object.keys(obj).forEach(key => {
 
     console.log(`key: ${key}, value: ${obj[key]}`)
@@ -97,19 +107,18 @@ const iterate = (obj,container) => {
             iterate(obj[key])
         }
     else {
-        try{
-            container.textContent += `${key} and ${obj[key]}`
+        
+            projectContainer.innerHTML += `${obj[key]} <br>`
         }
-        catch {
-            container.textContent += `${key} and ${obj[key]}`
+        
 
-            
-        }
             
     }
+            
+    
 
 
-    })
+    )
 }
 
 function displayProjects(e) {
@@ -130,7 +139,7 @@ function projTab(e) {
     projectHeader.innerHTML = e.target.id
     
 
-    const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
+    
 
    
     rightSection.appendChild(projectHeader)
@@ -143,7 +152,7 @@ function projTab(e) {
 
 function hmeBtn() {
     rightSection.innerHTML = ""
-    const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
+   
     rightSection.appendChild(homeheader)
     rightSection.appendChild(projectContainer)
     displayTodos()
