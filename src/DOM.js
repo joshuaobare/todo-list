@@ -46,6 +46,7 @@ function elementCreator(el,type,class_name,id_name,innertext) {
 
 const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
 const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
+const projectHeader = document.createElement("h1")
 
 function sub(e) {
     e.preventDefault()
@@ -106,8 +107,8 @@ function projectChecker(arr) {
 const iterate = (obj,tab) => {
     rightSection.innerHTML = ""
     
-    homeheader.innerHTML = projnamecont
-    rightSection.appendChild(homeheader)
+    projectHeader.innerHTML = projnamecont
+    rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
     rightSection.appendChild(addTask)
 
@@ -158,7 +159,7 @@ function displayProjects(e) {
 
 function projTab(e) {
     rightSection.innerHTML = ""
-    const projectHeader = document.createElement("h1")
+    
     projectHeader.classList.add("homeHeading")
     //projectHeader.innerHTML = e.target.id
     projectHeader.innerHTML = projnamecont
@@ -177,9 +178,11 @@ function projTab(e) {
 
 function hmeBtn() {
     rightSection.innerHTML = ""
+    
    
     rightSection.appendChild(homeheader)
     rightSection.appendChild(projectContainer)
+    homeheader.innerHTML = "Home"
     displayTodos()
     rightSection.appendChild(taskadder)
 }
