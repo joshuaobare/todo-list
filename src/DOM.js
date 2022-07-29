@@ -5,6 +5,7 @@ let description
 let dueDate 
 let priority
 let projnamecont
+let projarr
 
 let title2
 let description2
@@ -90,7 +91,19 @@ function displayTodos() {
     
 }
 
-const iterate = (obj) => {
+function projectChecker(arr) {
+
+  projarr =  arr.filter(function(project) {
+        if(project.name === projnamecont) {
+            return true
+        }
+    })
+
+    return projarr
+
+}
+
+const iterate = (obj,tab) => {
     rightSection.innerHTML = ""
     
     homeheader.innerHTML = projnamecont
@@ -107,8 +120,17 @@ const iterate = (obj) => {
             iterate(obj[key])
         }
     else {
-        
-            projectContainer.innerHTML += `${obj[key]} <br>`
+            if((key === 'name') || (key === 'title') || (key === 'info')) {
+                return
+            }
+
+            if ((key == 'name') && (key !== tab)) {
+                return
+            }
+            else {
+                projectContainer.innerHTML += `${obj[key]} <br>`
+            }
+            
         }
         
 
@@ -122,11 +144,13 @@ const iterate = (obj) => {
 }
 
 function displayProjects(e) {
-    projectContainer.innerHTML = ""
+    //projectContainer.innerHTML = ""
+    projTab(e)
+    const myarr = projectChecker(myprojects)
 
-    for (let x=0 ; x < myprojects.length ; x++) {
+    for (let x=0 ; x < myarr.length ; x++) {
 
-        iterate(myprojects[x],projectContainer)
+        iterate(myarr[x],e)
         
     }
 
@@ -136,17 +160,18 @@ function projTab(e) {
     rightSection.innerHTML = ""
     const projectHeader = document.createElement("h1")
     projectHeader.classList.add("homeHeading")
-    projectHeader.innerHTML = e.target.id
+    //projectHeader.innerHTML = e.target.id
+    projectHeader.innerHTML = projnamecont
+    
+    
+    projectContainer.innerHTML = ""
     
 
-    
-
-   
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer) 
     rightSection.appendChild(addTask)
 
-    return e.target.id
+    return projnamecont
     
 }
 
@@ -204,8 +229,9 @@ taskadder.addEventListener("click", function(e) {
 
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
-        projTab(e);
-        projnamecont = e.target.id               
+        projnamecont = e.target.id
+        displayProjects(e);
+                       
     };
   } );
 
