@@ -3,7 +3,7 @@ body {
 }
 #container {
     display: flex;
-    color: red;
+    color: #D92121;
     flex-direction: column;
 }
 
@@ -14,8 +14,13 @@ body {
 #rightSection {
     flex-grow:4;
     background-color: aqua;
+    padding-left: 10px;
 }
 
+#header {
+    background-color: black; 
+    color: gold;
+}
 .todo-form , .project-todo-form{
     display: flex;
     flex-direction: column;
@@ -32,12 +37,42 @@ body {
     cursor: pointer;
 }
 
+.projectname {
+    margin-left: 20px;
+    font-size: 1.25em;
+}
+
+.projectname:hover, .home:hover {
+    transform: scale(1.05);
+}
+
 #navBar {
     display: flex;
     flex-direction: column;
     gap:20px;
+    width: 200px;
+    padding: 10px;
+   
+
 }
 
-.proj-navBar {
-    
+.navbar-title {
+    font-size: 1.5em;
+    color: black;
+
+}
+
+#header > h1 {
+    text-align: center;
+    font-size: 3em ;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
 }

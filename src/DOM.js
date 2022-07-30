@@ -66,7 +66,7 @@ function displayTodos() {
         
         todos[x] = document.createElement("div")
         const todo = document.createElement("div")
-        let div
+        let div,z
 
         for(let y in todoList[x]) {
 
@@ -74,7 +74,14 @@ function displayTodos() {
 
                 div = document.createElement("div")
                 div.innerHTML += todoList[x][y] + "&emsp;"
-                todo.classList.add(todoList[x].title, "home-todos")
+
+                try {
+                    todo.classList.add(todoList[x].title, "home-todos")
+                }
+                catch {
+                    z = todoList[x].title.split(" ")
+                    todo.classList.add(z.join('-'))
+                }
             }
 
              
@@ -120,7 +127,7 @@ const iterate = (obj,tab) => {
             iterate(obj[key])
         }
     else {
-            if((key === 'name') || (key === 'title') || (key === 'info')) {
+            if((key === 'name') || (key === 'title') || (key === 'info') || (key === 'priority')) {
                 return
             }
 
