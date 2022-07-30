@@ -1,6 +1,6 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 
-let title, description, dueDate, priority,projnamecont,projarr
+let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
 let title2, description2,dueDate2,priority2, project , projectTitle , currentproject
 
 const todos = []
@@ -93,10 +93,11 @@ function projectChecker(arr) {
 
 const iterate = (obj,tab) => {
     rightSection.innerHTML = ""
-    
+    individualproj = document.createElement('div')
     projectHeader.innerHTML = projnamecont
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
+    
     rightSection.appendChild(addTask)
 
     Object.keys(obj).forEach(key => {
@@ -116,7 +117,29 @@ const iterate = (obj,tab) => {
                 return
             }
             else {
-                projectContainer.innerHTML += `${obj[key]} <br>`
+                
+                //for(let x = 0; x < Object.keys(obj).length; x++) {
+                    if (key === "description") {
+                        individualprojid = obj[key]
+                    }
+
+                    try{
+                        individualproj.classList.add(individualprojid)
+                    }
+                    catch {
+                        let x = individualprojid.split(" ")
+                        individualprojid = x.join('-')
+                        individualproj.classList.add(individualprojid)
+                    }
+                    let div = document.createElement("div")
+                    div.innerHTML = `${obj[key]} <br>`
+                    individualproj.appendChild(div)
+                    projectContainer.appendChild(individualproj)
+
+
+               // }
+
+                
             }
             
         }            
