@@ -66,13 +66,24 @@ function displayTodos() {
         
         todos[x] = document.createElement("div")
         const todo = document.createElement("div")
+        let div
 
         for(let y in todoList[x]) {
-            todo.innerHTML += todoList[x][y] + "&emsp;"
+
+            if ((y === "title") || (y === "dueDate")) {
+
+                div = document.createElement("div")
+                div.innerHTML += todoList[x][y] + "&emsp;"
+                todo.classList.add(todoList[x].title, "home-todos")
+            }
+
+             
+            
+            todo.appendChild(div)
                 
         }
         
-
+        
         todos[x].appendChild(todo)
         projectContainer.appendChild(todos[x])
     } 

@@ -31,3 +31,13 @@ body {
 .projectname , .home {
     cursor: pointer;
 }
+
+#navBar {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.proj-navBar {
+    
+}
