@@ -1,13 +1,14 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
-let title2, description2,dueDate2,priority2, project , projectTitle , currentproject
+let title2, description2,dueDate2,priority2, project , projectTitle
 
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const subBtn2 = document.querySelector("#project-todo-form-submit")
+const currentproject = document.querySelector("#currentproject")
 
 const projectBtn = document.querySelector("#project-submit")
 const projSection = document.querySelector("#projectSection")
@@ -109,7 +110,7 @@ function projectChecker(arr) {
 
 }
 
-const iterate = (obj,tab) => {
+function iterate(obj,tab) {
     rightSection.innerHTML = ""
     individualproj = document.createElement('div')
     projectHeader.innerHTML = projnamecont
@@ -176,6 +177,64 @@ function displayProjects(e) {
         
     }
 
+}
+
+const projectParser = (obj,x) => {
+    Object.keys(obj).forEach(key => {
+
+    console.log(`key: ${key}, value: ${obj[key]}`)
+
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+            projectParser(obj[key])
+        }
+
+    else {
+        if((key === "description") && (obj[key] === x)){
+            currentproject.innerHTML += `${key} + " " + ${obj[key]}`
+        }
+    }
+    })
+}
+
+function fetchProject(e) {
+    let projclasses = e.target.classList
+    console.log(projclasses)
+    let current_desc = projclasses[0] 
+    console.log(current_desc)
+    const myarr = projectChecker(myprojects)
+    console.log(myarr)
+    
+    const x = myarr.filter(function(project){
+        Object.keys(project).forEach(key => {
+
+            console.log(`key: ${key}, value: ${project[key]}`)
+        
+            if (typeof project[key] === 'object' && project[key] !== null) {
+                    iterate(project[key])
+                }
+            else {
+                if ((key === "description") && (project[key] === current_desc )){
+                    return true
+                }
+            }
+            
+            
+            })
+        })
+    
+
+
+
+
+    console.log(x)
+
+    for (let y=0 ; y < x.length ; y++) {
+
+        projectParser(x[y],current_desc)
+        
+    }
+    
+    
 }
 
 function projTab(e) {
@@ -264,6 +323,9 @@ rightSection.addEventListener('click', function(e) {
     if(e.target.id == "proj-task-btn") {
         projecttodoform.classList.remove("form")
            
+    }
+    if(e.target.classList.contains("project-todos")){
+        fetchProject(e)
     }
   } );
 
