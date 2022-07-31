@@ -65,7 +65,7 @@ function displayTodos() {
     for (let x=0 ; x< todoList.length ;x++) {
         
         todos[x] = document.createElement("div")
-        const todo = document.createElement("div")
+       
         let div,z
 
         for(let y in todoList[x]) {
@@ -76,22 +76,22 @@ function displayTodos() {
                 div.innerHTML += todoList[x][y] + "&emsp;"
 
                 try {
-                    todo.classList.add(todoList[x].title, "home-todos")
+                    todos[x].classList.add(todoList[x].title, "home-todos")
                 }
                 catch {
                     z = todoList[x].title.split(" ")
-                    todo.classList.add(z.join('-'))
+                    todos[x].classList.add(z.join('-'),"home-todos")
                 }
             }
 
              
             
-            todo.appendChild(div)
+            todos[x].appendChild(div)
                 
         }
         
         
-        todos[x].appendChild(todo)
+        
         projectContainer.appendChild(todos[x])
     } 
     
@@ -142,7 +142,7 @@ const iterate = (obj,tab) => {
                     }
 
                     try{
-                        individualproj.classList.add(individualprojid)
+                        individualproj.classList.add(individualprojid, "project-todos")
                     }
                     catch {
                         let x = individualprojid.split(" ")
