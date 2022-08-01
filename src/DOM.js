@@ -175,6 +175,18 @@ function iterate(obj,tab) {
     )
 }
 
+function deleteProjects(e){
+
+    const index = myprojects.findIndex((proj) =>{
+        return proj.project.description == e.target.classList
+    })
+
+    console.log(index)
+    myprojects.splice(index,1)
+    console.log(myprojects)
+
+}
+
 function displayProjects(e) {
     //projectContainer.innerHTML = ""
     projTab(e)
@@ -411,7 +423,13 @@ rightSection.addEventListener('click', function(e) {
 
   home.addEventListener("click",hmeBtn) 
     
-      
+currentproject.addEventListener('click', function(e){
+    if(e.target.id == "delbtn") {
+        deleteProjects(e)
+        displayProjects(e)
+        currentproject.innerHTML = ""
+    }
+})      
 
   
 
