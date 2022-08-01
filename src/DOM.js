@@ -9,7 +9,7 @@ const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const subBtn2 = document.querySelector("#project-todo-form-submit")
 const currentproject = document.querySelector("#currentproject")
-
+const currenttask = document.querySelector("#currenttask")
 const projectBtn = document.querySelector("#project-submit")
 const projSection = document.querySelector("#projectSection")
 const createproject = document.querySelector("#createproject")
@@ -224,8 +224,45 @@ function projectParser(obj) {
     })
 }
 
-function fetchTasks() {
-    
+function taskParser(obj) {
+    Object.keys(obj).forEach(key => {
+
+        console.log(`key: ${key}, value: ${obj[key]}`)
+        let task_line = document.createElement("div")
+
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+                taskParser(obj[key])
+            }
+
+        else {
+                
+                let div = document.createElement("div")
+               // let div2 = document.createElement("div")
+                div.innerHTML += `${capitalizeFirstLetter(key)}` + ": "  
+                div.innerHTML += `${obj[key]}`
+                task_line.appendChild(div)
+                //proj_line.appendChild(div2)
+                currenttask.appendChild(task_line)
+        }
+        })
+    }
+
+
+
+function fetchTasks(e) {
+    let taskclass = e.target.classList
+    let current_title = taskclass[0]
+
+    const x = todoList.filter(function(task){
+        if(task.title == current_title) {
+            return true
+        }
+    }) 
+
+    console.log(x)
+
+    x.forEach(obj => taskParser(obj))
+
 }
 
 function fetchProject(e) {
@@ -254,12 +291,8 @@ function fetchProject(e) {
 
     console.log(x)
 
-    for (let y=0 ; y < x.length ; y++) {
-
-        projectParser(x[y])
-        
-    }
-    
+    x.forEach(obj => projectParser(obj))
+          
     
 }
 
@@ -351,8 +384,14 @@ rightSection.addEventListener('click', function(e) {
            
     }
     if(e.target.classList.contains("project-todos")){
+        currentproject.innerHTML = ""
         fetchProject(e)
     }
+    if(e.target.classList.contains("home-todos")){
+        currenttask.innerHTML = ""
+        fetchTasks(e)
+    }
+
   } );
 
   home.addEventListener("click",hmeBtn) 
@@ -369,7 +408,7 @@ projecttab.forEach((proj) => {
     
        // projTab(e)
         //console.log(e)
-        console.log("nini wewe")
+        
     })
 })
 */
