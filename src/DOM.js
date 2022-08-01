@@ -28,7 +28,14 @@ delbtn.id = "delbtn"
 let taskdelbtn = document.createElement("button")
 taskdelbtn.innerHTML = "x"
 taskdelbtn.id = "taskdelbtn"
-    
+
+let projprioritybtn = document.createElement("button")
+projprioritybtn.innerHTML = "Priority"
+projprioritybtn.id = "projprioritybtn"
+
+let taskprioritybtn = document.createElement("button")
+taskprioritybtn.innerHTML = "Priority"
+taskprioritybtn.id = "taskprioritybtn"
 
 function elementCreator(el,type,class_name,id_name,innertext) {
     el = document.createElement(type)
@@ -120,6 +127,25 @@ function projectChecker(arr) {
     })
 
     return projarr
+
+}
+
+function projectPriority(e) {
+    
+    const index = myprojects.findIndex((proj) => {
+        return proj.project.description == e.target.classList
+    })
+    console.log(e.target.classList)
+    console.log(index)
+    console.log(myprojects[index])
+
+    if(myprojects[index].project.priority === "High Priority") {
+        myprojects[index].project.priority = "Low Priority"
+    }
+
+    else if(myprojects[index].project.priority === "Low Priority") {
+        myprojects[index].project.priority = "High Priority"
+    }
 
 }
 
@@ -238,7 +264,9 @@ function projectParser(obj) {
             else {
                 if((key ==='description')){
                     delbtn.className = ""
-                    delbtn.classList.add(obj[key]) 
+                    delbtn.classList.add(obj[key])
+                    projprioritybtn.className = ""
+                    projprioritybtn.classList.add(obj[key]) 
                     
                 }
 
@@ -251,6 +279,7 @@ function projectParser(obj) {
                 proj_line.appendChild(div)
                 //proj_line.appendChild(div2)
                 proj_line.appendChild(delbtn)
+                proj_line.appendChild(projprioritybtn)
                 currentproject.appendChild(proj_line)
                 
             }
@@ -455,6 +484,11 @@ currentproject.addEventListener('click', function(e){
         displayProjects(e)
         currentproject.innerHTML = ""
     }
+    if(e.target.id == "projprioritybtn") {
+        projectPriority(e)
+        currentproject.innerHTML = ""
+        fetchProject(e)
+    }
 })
 
 currenttask.addEventListener('click',function(e){
@@ -463,6 +497,8 @@ currenttask.addEventListener('click',function(e){
         displayTodos(e)
         currenttask.innerHTML = ""
     }
+    
+
 })
 
   
