@@ -184,17 +184,32 @@ const projectParser = (obj,x) => {
 
     console.log(`key: ${key}, value: ${obj[key]}`)
 
+
+
+    //currentproject.innerHTML += `${key} + " " + ${obj[key]}`
     if (typeof obj[key] === 'object' && obj[key] !== null) {
             projectParser(obj[key])
         }
 
     else {
-        if((key === "description") && (obj[key] === x)){
-            currentproject.innerHTML += `${key} + " " + ${obj[key]}`
-        }
+            if((key === 'name') || (key === 'info')) {
+                return
+            }
+            else {
+                currentproject.innerHTML += `${key}` + " " + `${obj[key]}`
+            }
+             
+            
+        
     }
+
+   /* if (obj[key] === project) {
+        projectParser(obj[key])
+    }*/
+
+
     })
-}
+} 
 
 function fetchProject(e) {
     let projclasses = e.target.classList
@@ -204,33 +219,27 @@ function fetchProject(e) {
     const myarr = projectChecker(myprojects)
     console.log(myarr)
     
-    const x = myarr.filter(function(project){
-        Object.keys(project).forEach(key => {
+    const x = myarr.filter(function(proj){
 
-            console.log(`key: ${key}, value: ${project[key]}`)
-        
-            if (typeof project[key] === 'object' && project[key] !== null) {
-                    iterate(project[key])
-                }
-            else {
-                if ((key === "description") && (project[key] === current_desc )){
-                    return true
-                }
+        if(proj.project.description == current_desc){
+            return true
+        }
+
+        else {
+            let new_desc = current_desc.split("-").join(" ")
+            console.log(new_desc)
+            if(proj.project.description == new_desc){
+                return true
             }
-            
-            
-            })
-        })
+        }
+    })
     
-
-
-
 
     console.log(x)
 
     for (let y=0 ; y < x.length ; y++) {
 
-        projectParser(x[y],current_desc)
+        projectParser(x[y])
         
     }
     
