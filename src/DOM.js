@@ -35,6 +35,9 @@ function elementCreator(el,type,class_name,id_name,innertext) {
 const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
 const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 function sub(e) {
     e.preventDefault()
@@ -179,12 +182,12 @@ function displayProjects(e) {
 
 }
 
-const projectParser = (obj,x) => {
+function projectParser(obj) {
     Object.keys(obj).forEach(key => {
 
     console.log(`key: ${key}, value: ${obj[key]}`)
 
-
+    let proj_line = document.createElement("div")
 
     //currentproject.innerHTML += `${key} + " " + ${obj[key]}`
     if (typeof obj[key] === 'object' && obj[key] !== null) {
@@ -196,7 +199,17 @@ const projectParser = (obj,x) => {
                 return
             }
             else {
-                currentproject.innerHTML += `${key}` + " " + `${obj[key]}`
+                
+
+                
+
+                let div = document.createElement("div")
+               // let div2 = document.createElement("div")
+                div.innerHTML += `${capitalizeFirstLetter(key)}` + ": "  
+                div.innerHTML += `${obj[key]}`
+                proj_line.appendChild(div)
+                //proj_line.appendChild(div2)
+                currentproject.appendChild(proj_line)
             }
              
             
@@ -209,7 +222,11 @@ const projectParser = (obj,x) => {
 
 
     })
-} 
+}
+
+function fetchTasks() {
+    
+}
 
 function fetchProject(e) {
     let projclasses = e.target.classList

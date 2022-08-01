@@ -89,3 +89,8 @@ footer {
     
     border-radius: 5px;
 }
+
+#currentproject {
+    display: flex;
+    flex-direction: column;
+}
