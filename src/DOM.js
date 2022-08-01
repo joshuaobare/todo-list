@@ -24,6 +24,10 @@ const projectHeader = document.createElement("h1")
 let delbtn = document.createElement("button")
 delbtn.innerHTML = "x"
 delbtn.id = "delbtn"
+
+let taskdelbtn = document.createElement("button")
+taskdelbtn.innerHTML = "x"
+taskdelbtn.id = "taskdelbtn"
     
 
 function elementCreator(el,type,class_name,id_name,innertext) {
@@ -187,6 +191,19 @@ function deleteProjects(e){
 
 }
 
+function deleteTasks(e) {
+
+    let x = e.target.className
+    console.log(x)
+    const index = todoList.findIndex((proj) => {
+        return proj.title === x
+    })
+
+    console.log(index)
+    todoList.splice(index,1)
+    console.log(todoList)
+}
+
 function displayProjects(e) {
     //projectContainer.innerHTML = ""
     projTab(e)
@@ -220,6 +237,7 @@ function projectParser(obj) {
             }
             else {
                 if((key ==='description')){
+                    delbtn.className = ""
                     delbtn.classList.add(obj[key]) 
                     
                 }
@@ -262,6 +280,13 @@ function taskParser(obj) {
             }
 
         else {
+                if((key === 'title')) {
+                    // className is emptied for when tasks are being deleted, as it would alter the classList array indices
+
+                    taskdelbtn.className = ""
+                    taskdelbtn.classList.add(obj[key])
+                }
+
                 
                 let div = document.createElement("div")
                // let div2 = document.createElement("div")
@@ -269,6 +294,7 @@ function taskParser(obj) {
                 div.innerHTML += `${obj[key]}`
                 task_line.appendChild(div)
                 //proj_line.appendChild(div2)
+                task_line.appendChild(taskdelbtn)
                 currenttask.appendChild(task_line)
         }
         })
@@ -429,7 +455,15 @@ currentproject.addEventListener('click', function(e){
         displayProjects(e)
         currentproject.innerHTML = ""
     }
-})      
+})
+
+currenttask.addEventListener('click',function(e){
+    if(e.target.id == "taskdelbtn") {
+        deleteTasks(e)
+        displayTodos(e)
+        currenttask.innerHTML = ""
+    }
+})
 
   
 
