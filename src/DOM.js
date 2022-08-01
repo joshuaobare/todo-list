@@ -21,6 +21,10 @@ const home = document.querySelector("#home")
 //const homeheader = document.querySelector("#homeHeading")
 const projecttab = document.querySelectorAll(".projectname")
 const projectHeader = document.createElement("h1")
+let delbtn = document.createElement("button")
+delbtn.innerHTML = "x"
+delbtn.id = "delbtn"
+    
 
 function elementCreator(el,type,class_name,id_name,innertext) {
     el = document.createElement(type)
@@ -34,6 +38,8 @@ function elementCreator(el,type,class_name,id_name,innertext) {
 
 const addTask = elementCreator("addTask","button","proj-task-btn","proj-task-btn","Add Task")
 const homeheader = elementCreator("homeheader","h1","homeHeader","homeHeading","Home")
+//const delbtn = elementCreator("delbtn","button","delbtn","delbtn","X")
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -183,12 +189,14 @@ function displayProjects(e) {
 }
 
 function projectParser(obj) {
+    
     Object.keys(obj).forEach(key => {
 
     console.log(`key: ${key}, value: ${obj[key]}`)
 
     let proj_line = document.createElement("div")
-
+    
+    
     //currentproject.innerHTML += `${key} + " " + ${obj[key]}`
     if (typeof obj[key] === 'object' && obj[key] !== null) {
             projectParser(obj[key])
@@ -199,7 +207,10 @@ function projectParser(obj) {
                 return
             }
             else {
-                
+                if((key ==='description')){
+                    delbtn.classList.add(obj[key]) 
+                    
+                }
 
                 
 
@@ -209,19 +220,23 @@ function projectParser(obj) {
                 div.innerHTML += `${obj[key]}`
                 proj_line.appendChild(div)
                 //proj_line.appendChild(div2)
+                proj_line.appendChild(delbtn)
                 currentproject.appendChild(proj_line)
+                
             }
-             
+            
             
         
     }
-
+    
    /* if (obj[key] === project) {
         projectParser(obj[key])
     }*/
 
 
     })
+    
+    //currentproject.appendChild(delbtn)
 }
 
 function taskParser(obj) {

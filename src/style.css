@@ -94,3 +94,7 @@ footer {
     display: flex;
     flex-direction: column;
 }
+
+#delbtn {
+    align-self: flex-start;
+}
