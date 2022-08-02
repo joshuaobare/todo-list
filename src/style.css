@@ -33,17 +33,16 @@ body {
     display: none;
 }
 
-.projectname , .home {
-    cursor: pointer;
-}
+
 
 .projectname {
     margin-left: 20px;
     font-size: 1.25em;
 }
 
-.projectname:hover, .home:hover {
+.projectname:hover, .home:hover, .today:hover {
     transform: scale(1.05);
+    cursor: pointer;
 }
 
 #navBar {
