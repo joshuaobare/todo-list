@@ -286,7 +286,7 @@ function iterate2(obj,tab) {
                     }
                     let div = document.createElement("div")
                     div.innerHTML = `${obj[key]} <br>`
-                    individualproj.appendChild(div)
+                    thisproj.appendChild(div)
                     projectContainer.appendChild(thisproj)
 
 
@@ -700,6 +700,7 @@ function displayToday(e) {
 }
 
 today.addEventListener('click', (e) => {
+    projectContainer.innerHTML = ""
     displayToday(e)
 })
 
