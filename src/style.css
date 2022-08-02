@@ -97,3 +97,7 @@ footer {
 #delbtn {
     align-self: flex-start;
 }
+
+.todayheader {
+    color: black;
+}

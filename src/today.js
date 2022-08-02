@@ -1,6 +1,6 @@
-import { compareAsc,format, parseISO } from "date-fns/esm";
-import {todoList,myprojects} from "./controller"
-import {iterate2,displayTodos2} from "./DOM"
+import { compareAsc, format, parseISO } from "date-fns/esm";
+import { todoList, myprojects } from "./controller"
+import { projectsToday, tasksToday } from "./DOM"
 
 
 let today = format(new Date(),"yyyy-MM-dd" )
@@ -19,7 +19,7 @@ function projectDate(tab) {
     console.log(arr)
 
     arr.forEach((proj) => {
-        iterate2(proj,tab)
+        projectsToday(proj,tab)
     })
     
 
@@ -34,7 +34,7 @@ function taskDate() {
         }
     })
 
-    displayTodos2(arr)
+    tasksToday(arr)
 }
 
 
