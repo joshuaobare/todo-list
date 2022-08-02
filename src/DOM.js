@@ -279,9 +279,19 @@ function projectParser(obj) {
             else {
                 if((key ==='description')){
                     delbtn.className = ""
-                    delbtn.classList.add(obj[key])
                     projprioritybtn.className = ""
-                    projprioritybtn.classList.add(obj[key]) 
+
+                    try {
+                        delbtn.classList.add(obj[key])
+                        projprioritybtn.classList.add(obj[key])
+                    }
+                    catch {
+                        let x = obj[key].split()
+                        let new_class = x.join('-')
+                        delbtn.classList.add(new_class)
+                        projprioritybtn.classList.add(new_class)
+                    }
+                     
                     
                 }
 
@@ -328,9 +338,20 @@ function taskParser(obj) {
                     // className is emptied for when tasks are being deleted, as it would alter the classList array indices
 
                     taskdelbtn.className = ""
-                    taskdelbtn.classList.add(obj[key])
                     taskprioritybtn.className = ""
-                    taskprioritybtn.classList.add(obj[key])
+
+                    try {
+                        taskdelbtn.classList.add(obj[key])
+                        taskprioritybtn.classList.add(obj[key])
+                    }
+
+                    catch {
+                        let x = obj[key].split(" ")
+                        let new_class = x.join("-")
+                        taskdelbtn.classList.add(new_class)
+                        taskprioritybtn.classList.add(new_class)
+                    }
+                    
                 }
 
                 
