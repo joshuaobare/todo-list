@@ -1,7 +1,7 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
-let title2, description2,dueDate2,priority2, project , projectTitle
+let title2, description2,dueDate2,priority2, project , projectTitle, delProj
 
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
@@ -168,17 +168,24 @@ function iterate(obj,tab) {
     rightSection.innerHTML = ""
     individualproj = document.createElement('div')
     projectHeader.innerHTML = projnamecont
-    const delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+    delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
         
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
     
     rightSection.appendChild(addTask)
-    rightSection.appendChild(delProj)
+
+    if (rightSection.contains(delProj)){
+        return
+    }
+    else {
+        rightSection.appendChild(delProj)
+        }
+    
 
     Object.keys(obj).forEach(key => {
 
-    console.log(`key: ${key}, value: ${obj[key]}`)
+    
     
     
     if (typeof obj[key] === 'object' && obj[key] !== null) {
@@ -288,7 +295,7 @@ function projectParser(obj) {
     
     Object.keys(obj).forEach(key => {
 
-    console.log(`key: ${key}, value: ${obj[key]}`)
+    
 
     let proj_line = document.createElement("div")
     
@@ -352,7 +359,7 @@ function projectParser(obj) {
 function taskParser(obj) {
     Object.keys(obj).forEach(key => {
 
-        console.log(`key: ${key}, value: ${obj[key]}`)
+        
         let task_line = document.createElement("div")
 
         if (typeof obj[key] === 'object' && obj[key] !== null) {
@@ -527,10 +534,17 @@ taskadder.addEventListener("click", function(e) {
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
         projnamecont = e.target.id
-        const delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+        delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
         
         displayProjects(e);
-        rightSection.appendChild(delProj)
+        if (rightSection.contains(delProj)){
+            
+            return
+        }
+        else {
+            rightSection.appendChild(delProj)
+            
+        }
                        
     };
   } );
