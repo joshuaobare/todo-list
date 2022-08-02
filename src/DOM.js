@@ -168,10 +168,13 @@ function iterate(obj,tab) {
     rightSection.innerHTML = ""
     individualproj = document.createElement('div')
     projectHeader.innerHTML = projnamecont
+    const delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+        
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
     
     rightSection.appendChild(addTask)
+    rightSection.appendChild(delProj)
 
     Object.keys(obj).forEach(key => {
 
@@ -243,6 +246,29 @@ function deleteTasks(e) {
     console.log(index)
     todoList.splice(index,1)
     console.log(todoList)
+}
+
+function deleteProjCont(e) {
+    
+    console.log(e.target.className)
+    const arr = myprojects.filter((proj) => {
+        if (proj.name === e.target.className) {
+            
+            return true
+        }
+    })
+
+    
+    console.log(arr)
+
+    arr.forEach((proj) => {
+        const index = myprojects.indexOf(proj)
+        console.log(index)
+        myprojects.splice(index,1)
+    })
+
+   
+    console.log(myprojects)
 }
 
 function displayProjects(e) {
@@ -501,10 +527,24 @@ taskadder.addEventListener("click", function(e) {
 projSection.addEventListener('click', function(e) {
     if(e.target.classList.contains('projectname')) {
         projnamecont = e.target.id
+        const delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+        
         displayProjects(e);
+        rightSection.appendChild(delProj)
                        
     };
   } );
+
+  function removeProj(e) {
+    const projdivs = document.querySelectorAll(".projectname")
+    console.log(projdivs)
+    console.log(e.target.className)
+    projdivs.forEach((div) => {
+        if(div.innerHTML === e.target.className) {
+            console.log(div)
+            div.remove()
+        }
+    })}
 
 rightSection.addEventListener('click', function(e) {
     console.log(e) 
@@ -520,10 +560,18 @@ rightSection.addEventListener('click', function(e) {
         currenttask.innerHTML = ""
         fetchTasks(e)
     }
+    if(e.target.id == "delProj"){
+        deleteProjCont(e)
+        hmeBtn()
+        removeProj(e)
+    }
 
   } );
 
-  home.addEventListener("click",hmeBtn) 
+
+
+
+home.addEventListener("click",hmeBtn) 
     
 currentproject.addEventListener('click', function(e){
     if(e.target.id == "delbtn") {
