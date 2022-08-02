@@ -149,6 +149,21 @@ function projectPriority(e) {
 
 }
 
+function taskPriority(e) {
+    const index = todoList.findIndex((proj) => {
+        return proj.title == e.target.classList
+    })
+
+    if(todoList[index].priority === "High Priority") {
+        todoList[index].priority = "Low Priority"
+    }
+
+    else if(todoList[index].priority === "Low Priority") {
+        todoList[index].priority = "High Priority"
+    }
+
+}
+
 function iterate(obj,tab) {
     rightSection.innerHTML = ""
     individualproj = document.createElement('div')
@@ -314,6 +329,8 @@ function taskParser(obj) {
 
                     taskdelbtn.className = ""
                     taskdelbtn.classList.add(obj[key])
+                    taskprioritybtn.className = ""
+                    taskprioritybtn.classList.add(obj[key])
                 }
 
                 
@@ -324,6 +341,7 @@ function taskParser(obj) {
                 task_line.appendChild(div)
                 //proj_line.appendChild(div2)
                 task_line.appendChild(taskdelbtn)
+                task_line.appendChild(taskprioritybtn)
                 currenttask.appendChild(task_line)
         }
         })
@@ -338,6 +356,14 @@ function fetchTasks(e) {
     const x = todoList.filter(function(task){
         if(task.title == current_title) {
             return true
+        }
+
+        else {
+            let new_title = current_title.split("-").join(" ")
+            console.log(new_title)
+            if(task.title == new_title){
+                return true
+            }
         }
     }) 
 
@@ -497,6 +523,13 @@ currenttask.addEventListener('click',function(e){
         displayTodos(e)
         currenttask.innerHTML = ""
     }
+
+    if(e.target.id == "taskprioritybtn") {
+        taskPriority(e)
+        currenttask.innerHTML = ""
+        fetchTasks(e)
+    }
+
     
 
 })
