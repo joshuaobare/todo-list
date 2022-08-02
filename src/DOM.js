@@ -1,11 +1,13 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
-import {projectDate} from "./today"
+import {projectDate,taskDate} from "./today"
 
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
 let title2, description2,dueDate2,priority2, project , projectTitle, delProj
 
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
+const projectContainer2 = document.createElement("div")
+projectContainer.id = "projectContainer2"
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const subBtn2 = document.querySelector("#project-todo-form-submit")
@@ -116,6 +118,44 @@ function displayTodos() {
         
         
         projectContainer.appendChild(todos[x])
+    } 
+    
+}
+
+function displayTodos2(array) {
+    //projectContainer.innerHTML = ""
+
+    for (let x=0 ; x< array.length ;x++) {
+        
+        todos[x] = document.createElement("div")
+       
+        let div,z
+
+        for(let y in array[x]) {
+
+            if ((y === "title") || (y === "dueDate")) {
+
+                div = document.createElement("div")
+                div.innerHTML += array[x][y] + "&emsp;"
+
+                try {
+                    todos[x].classList.add(array[x].title, "home-todos")
+                }
+                catch {
+                    z = array[x].title.split(" ")
+                    todos[x].classList.add(z.join('-'),"home-todos")
+                }
+            }
+
+             
+            
+            todos[x].appendChild(div)
+                
+        }
+        
+        
+        
+        projectContainer2.appendChild(todos[x])
     } 
     
 }
@@ -694,7 +734,15 @@ function displayToday(e) {
     projectDate(e)
    // projectContainer.innerHTML = ""
     rightSection.appendChild(projectHeader)
-    rightSection.appendChild(projectContainer) 
+    const todayh1 = document.createElement("h2")
+    const todayh2 = document.createElement("h2")
+    todayh1.innerHTML = "Projects"
+    todayh2.innerHTML = "Tasks"
+    
+    rightSection.appendChild(todayh1)
+    rightSection.appendChild(projectContainer)
+    rightSection.appendChild(todayh2)
+    rightSection.appendChild(projectContainer2)  
     
 
 }
@@ -702,6 +750,8 @@ function displayToday(e) {
 today.addEventListener('click', (e) => {
     projectContainer.innerHTML = ""
     displayToday(e)
+    projectContainer2.innerHTML = ""
+    taskDate()
 })
 
 
@@ -718,4 +768,4 @@ projecttab.forEach((proj) => {
 */
 
 
-export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, iterate2}
+export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, iterate2,displayTodos2}

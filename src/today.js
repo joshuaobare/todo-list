@@ -1,6 +1,6 @@
 import { compareAsc,format, parseISO } from "date-fns/esm";
 import {todoList,myprojects} from "./controller"
-import {iterate2} from "./DOM"
+import {iterate2,displayTodos2} from "./DOM"
 
 
 let today = format(new Date(),"yyyy-MM-dd" )
@@ -29,10 +29,12 @@ function taskDate() {
 
     const arr = todoList.filter((proj) => {
         const testdate = format(new Date(proj.dueDate),"yyyy-MM-dd")
-        if(compareAsc(testdate,today )){
+        if(compareAsc(parseISO(testdate),parseISO(today) ) == 0){
             return true
         }
     })
+
+    displayTodos2(arr)
 }
 
 
@@ -40,4 +42,4 @@ function taskDate() {
 
 
 
-export {today,projectDate}
+export {today,projectDate,taskDate}
