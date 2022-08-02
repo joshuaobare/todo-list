@@ -1,4 +1,5 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
+import {projectDate} from "./today"
 
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
 let title2, description2,dueDate2,priority2, project , projectTitle, delProj
@@ -18,6 +19,7 @@ const taskadder = document.querySelector("#addtask")
 const todoform = document.querySelector("#main-form")
 const projecttodoform = document.querySelector("#secondary-form")
 const home = document.querySelector("#home")
+const today = document.querySelector("#today")
 //const homeheader = document.querySelector("#homeHeading")
 const projecttab = document.querySelectorAll(".projectname")
 const projectHeader = document.createElement("h1")
@@ -218,6 +220,74 @@ function iterate(obj,tab) {
                     div.innerHTML = `${obj[key]} <br>`
                     individualproj.appendChild(div)
                     projectContainer.appendChild(individualproj)
+
+
+               // }
+
+                
+            }
+            
+        }            
+    }      
+    )
+}
+
+
+function iterate2(obj,tab) {
+    rightSection.innerHTML = ""
+    let thisproj = document.createElement('div')
+    let thisprojid
+    //projectHeader.innerHTML = projnamecont
+   // delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+        
+    //rightSection.appendChild(projectHeader)
+   // rightSection.appendChild(projectContainer)
+    
+   // rightSection.appendChild(addTask)
+/*
+    if (rightSection.contains(delProj)){
+        return
+    }
+    else {
+        rightSection.appendChild(delProj)
+        } */
+    
+
+    Object.keys(obj).forEach(key => {
+
+    
+    
+    
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+            iterate2(obj[key])
+        }
+    else {
+            if((key === 'name') || (key === 'title') || (key === 'info') || (key === 'priority')) {
+                return
+            }
+
+            if ((key == 'name') && (key !== tab)) {
+                return
+            }
+            else {
+                
+                //for(let x = 0; x < Object.keys(obj).length; x++) {
+                    if (key === "description") {
+                        thisprojid = obj[key]
+                    }
+
+                    try{
+                        thisproj.classList.add(thisprojid, "project-todos")
+                    }
+                    catch {
+                        let x = thisprojid.split(" ")
+                        thisprojid = x.join('-')
+                        thisproj.classList.add(thisprojid)
+                    }
+                    let div = document.createElement("div")
+                    div.innerHTML = `${obj[key]} <br>`
+                    individualproj.appendChild(div)
+                    projectContainer.appendChild(thisproj)
 
 
                // }
@@ -617,7 +687,21 @@ currenttask.addEventListener('click',function(e){
 
 })
 
-  
+
+function displayToday(e) {
+    rightSection.innerHTML = ""
+    projectHeader.innerHTML = "Today"
+    projectDate(e)
+   // projectContainer.innerHTML = ""
+    rightSection.appendChild(projectHeader)
+    rightSection.appendChild(projectContainer) 
+    
+
+}
+
+today.addEventListener('click', (e) => {
+    displayToday(e)
+})
 
 
 /*
@@ -633,4 +717,4 @@ projecttab.forEach((proj) => {
 */
 
 
-export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2}
+export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, iterate2}
