@@ -12,10 +12,11 @@ function storeTasks(x) {
 
 function retrieveProjects() {
 
+   return JSON.parse(localStorage.getItem("myprojects"))
 }
 
 function retrieveTasks() {
-    
+    return JSON.parse(localStorage.getItem("todoList"))
 }
 
-export { storeProjects, storeTasks }
+export { storeProjects, storeTasks, retrieveProjects , retrieveTasks }

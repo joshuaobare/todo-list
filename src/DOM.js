@@ -1,5 +1,6 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 import {projectDate,taskDate} from "./today"
+import { retrieveProjects , retrieveTasks} from "./storage"
 
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
 let title2, description2,dueDate2,priority2, project , projectTitle, delProj
@@ -40,6 +41,8 @@ projprioritybtn.id = "projprioritybtn"
 let taskprioritybtn = document.createElement("button")
 taskprioritybtn.innerHTML = "Priority"
 taskprioritybtn.id = "taskprioritybtn"
+
+let newTodoList = retrieveTasks()
 
 
 // take a guess about what elementCreator does
