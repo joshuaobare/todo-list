@@ -33,7 +33,9 @@ const today = document.querySelector("#today")
 const mainformdialog = document.querySelector("#main-form-dialog")
 const secondaryformdialog = document.querySelector("#secondary-form-dialog")
 const projnameformdialog = document.querySelector("#proj-name-form-dialog")
-
+const currentprojectdialog = document.querySelector("#current-project-dialog")
+const currenttaskdialog = document.querySelector("#current-task-dialog")
+const alldialogs = document.querySelectorAll("dialog")
 const projecttab = document.querySelectorAll(".projectname")
 const projectHeader = document.createElement("h1")
 let delbtn = document.createElement("button")
@@ -187,7 +189,7 @@ function projectPriority(e) {
     // finds the index of the project whose description is the same as the target element's class
 
     const index = myprojects.findIndex((proj) => {
-        return proj.project.description == e.target.classList
+        return proj.project.description == e.target.dataset.info
     })
     console.log(e.target.classList)
     console.log(index)
@@ -209,8 +211,12 @@ function projectPriority(e) {
 
 function taskPriority(e) {
     const index = todoList.findIndex((proj) => {
-        return proj.title == e.target.classList
+        return proj.title == e.target.dataset.info
     })
+
+    /*if (index == "-1") {
+        index = index.split("-").join(" ")
+    }*/
 
     if(todoList[index].priority === "High Priority") {
         todoList[index].priority = "Low Priority"
@@ -234,7 +240,8 @@ function iterate(obj,tab) {
 
     // we want the delete button to also hold this value so that when we want to delete it it's easily accessible
 
-    delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+    delProj = elementCreator("delProj","button","delProj","delProj","Delete Project")
+    delProj.setAttribute("data-info",projnamecont)
         
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
@@ -374,9 +381,9 @@ function deleteTasks(e) {
 
 function deleteProjCont(e) {
     
-    console.log(e.target.className)
+    console.log(e.target.dataset.info)
     const arr = myprojects.filter((proj) => {
-        if (proj.name === e.target.className) {
+        if (proj.name === e.target.dataset.info) {
             
             return true
         }
@@ -464,14 +471,16 @@ function projectParser(obj) {
                 if((key ==='description')){
                     delbtn.className = ""
                     projprioritybtn.className = ""
+                    projprioritybtn.setAttribute("data-info",obj[key])
 
                     try {
                         delbtn.classList.add(obj[key])
                         projprioritybtn.classList.add(obj[key])
                     }
                     catch {
-                        let x = obj[key].split()
+                        let x = obj[key].split(" ")
                         let new_class = x.join('-')
+                        console.log(new_class)
                         delbtn.classList.add(new_class)
                         projprioritybtn.classList.add(new_class)
                     }
@@ -507,7 +516,7 @@ function taskParser(obj) {
 
                     taskdelbtn.className = ""
                     taskprioritybtn.className = ""
-
+                    taskprioritybtn.setAttribute("data-info",obj[key])
                     try {
                         taskdelbtn.classList.add(obj[key])
                         taskprioritybtn.classList.add(obj[key])
@@ -608,15 +617,15 @@ function hmeBtn() {
 function removeProj(e) {
     const projdivs = document.querySelectorAll(".projectname")
     console.log(projdivs)
-    console.log(e.target.className)
+    console.log(e.target.dataset.info)
     projdivs.forEach((div) => {
-        if(div.innerHTML === e.target.className) {
+        if(div.innerHTML === e.target.dataset.info) {
             console.log(div)
             div.remove()
         }
     })
     let index = projectnames.findIndex((name) => {
-        return name == e.target.className
+        return name == e.target.dataset.info
     })
 
     console.log(index)
@@ -651,6 +660,11 @@ function sideBar() {
         const newProj = document.createElement("div")
         newProj.setAttribute("class","projectname")
         newProj.setAttribute("id",titles)
+
+       /* if((" " in titles)){
+            console.log("contains whitespace")
+        }*/
+
         newProj.innerHTML = titles
         projSection.appendChild(newProj)
     })
@@ -710,9 +724,18 @@ taskadder.addEventListener("click", function(e) {
 })
 
 projSection.addEventListener('click', function(e) {
+    let x
+
     if(e.target.classList.contains('projectname')) {
+
         projnamecont = e.target.id
-        delProj = elementCreator("delProj","button",projnamecont,"delProj","Delete Project")
+        
+        
+        delProj = elementCreator("delProj","button","delProj","delProj","Delete Project")
+        //delProj = document.createElement("button")
+        delProj.setAttribute("data-info",projnamecont) 
+        
+
         
         displayProjects(e);
         if (rightSection.contains(delProj)){
@@ -736,11 +759,15 @@ rightSection.addEventListener('click', function(e) {
     }
     if(e.target.classList.contains("project-todos")){
         currentproject.innerHTML = ""
+        
         fetchProject(e)
+        currentprojectdialog.showModal()
+
     }
     if(e.target.classList.contains("home-todos")){
         currenttask.innerHTML = ""
         fetchTasks(e)
+        currenttaskdialog.showModal()
     }
     if(e.target.id == "delProj"){
         deleteProjCont(e)
@@ -785,5 +812,25 @@ today.addEventListener('click', (e) => {
     projectContainer2.innerHTML = ""
     taskDate()
 })
+
+/*alldialogs.forEach((dialog) => {
+    dialog.addEventListener("click", (e)=> {
+        e.stopPropagation()
+        if((e.target.tagName =="DIALOG" )) {
+            dialog.close()
+        }
+        else {
+
+        }
+        
+        
+        
+    })
+})
+
+window.addEventListener("click", (e) => {
+        if((e.target.tagName == "DIALOG") && ())
+})
+*/
 
 export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, displayTodos, projectsToday,tasksToday,hmeBtn,sideBar}
