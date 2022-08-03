@@ -4,8 +4,8 @@ import {displayTodos,sub,hmeBtn,sideBar} from "./DOM.js"
 import {today} from "./today"
 import { retrieveProjects, retrieveTasks, storeTasks, retrieveTitles } from './storage'
 
-let todoList,myprojects
-let projectnames 
+let todoList,myprojects, projectnames
+  
 
 if ("todoList" in localStorage) {
     todoList = retrieveTasks()

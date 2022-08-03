@@ -15,7 +15,7 @@ const todos = []
 
 const projectContainer = document.querySelector("#projectContainer")
 const projectContainer2 = document.createElement("div")
-projectContainer.id = "projectContainer2"
+projectContainer2.id = "projectContainer2"
 const rightSection = document.querySelector("#rightSection")
 const subBtn = document.querySelector("#todo-form-submit")
 const subBtn2 = document.querySelector("#project-todo-form-submit")
@@ -30,6 +30,9 @@ const todoform = document.querySelector("#main-form")
 const projecttodoform = document.querySelector("#secondary-form")
 const home = document.querySelector("#home")
 const today = document.querySelector("#today")
+const mainformdialog = document.querySelector("#main-form-dialog")
+const secondaryformdialog = document.querySelector("#secondary-form-dialog")
+const projnameformdialog = document.querySelector("#proj-name-form-dialog")
 
 const projecttab = document.querySelectorAll(".projectname")
 const projectHeader = document.createElement("h1")
@@ -663,7 +666,8 @@ subBtn.addEventListener("click", function(e) {
     sub(e)
     document.querySelector(".todo-form").reset()
     console.log(todoList)
-    todoform.classList.add("form")
+    //todoform.classList.add("form")
+    mainformdialog.close()
     displayTodos()
 
 })
@@ -672,6 +676,7 @@ subBtn2.addEventListener("click", function(e){
     projSub(e)
     document.querySelector(".project-todo-form").reset()
     projecttodoform.classList.add("form")
+    secondaryformdialog.close()
     displayProjects(projnamecont)
     
 
@@ -690,16 +695,18 @@ projectBtn.addEventListener("click", function(e) {
     projSection.innerHTML = ""
     sideBar()
     
-    projnameform.classList.add("form")
-
+    //projnameform.classList.add("form")
+    projnameformdialog.close()
 })
 
 createproject.addEventListener("click", function(e) {
-    projnameform.classList.remove("form")
+    //projnameform.classList.remove("form")
+    projnameformdialog.showModal()
 })
 
 taskadder.addEventListener("click", function(e) {
-    todoform.classList.remove("form")
+    mainformdialog.classList.remove("form")
+    mainformdialog.showModal()
 })
 
 projSection.addEventListener('click', function(e) {
@@ -724,6 +731,7 @@ rightSection.addEventListener('click', function(e) {
     console.log(e) 
     if(e.target.id == "proj-task-btn") {
         projecttodoform.classList.remove("form")
+        secondaryformdialog.showModal()
            
     }
     if(e.target.classList.contains("project-todos")){

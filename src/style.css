@@ -101,3 +101,11 @@ footer {
 .todayheader {
     color: black;
 }
+
+#rightSection, #navBar {
+    height: 100%;
+}
+
+#main-form-dialog, #secondary-form-dialog {
+    width: 200px;
+}

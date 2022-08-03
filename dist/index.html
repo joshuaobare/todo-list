@@ -38,82 +38,96 @@
         
     </div>
 
-    <div id="main-form" class="form">
-        <form action="" class="todo-form">
-            <div class="form-title">
-                <label for="title">Title</label>
-                <input type="text" id="title">
-            </div>
-            <div class="form-description">
-                <label for="description">Description</label>
-                <input type="text" id="description">
-            </div>
-            <div class="form-dueDate">
-                <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate">
-            </div>
-            <div class="form-priority">
-                <fieldset>
-                    <legend class="status-legend">Priority</legend>
-                    <label for="high-priority">High</label>
-                    <input type="radio" id="high-priority" name="priority" value="High Priority" checked>
-                    <label for="low-priority2">Low</label>
-                    <input type="radio" id="low-priority" name="priority" value="Low Priority">
-                </fieldset>
-            <div>
-                <button id="todo-form-submit">Submit</button>
-            </div>
+    <dialog id="main-form-dialog">
+        <div id="main-form">
+            <form action="" class="todo-form">
+                <div class="form-title">
+                    <label for="title">Title</label>
+                    <input type="text" id="title">
+                </div>
+                <div class="form-description">
+                    <label for="description">Description</label>
+                    <input type="text" id="description">
+                </div>
+                <div class="form-dueDate">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate">
+                </div>
+                <div class="form-priority">
+                    <fieldset>
+                        <legend class="status-legend">Priority</legend>
+                        <label for="high-priority">High</label>
+                        <input type="radio" id="high-priority" name="priority" value="High Priority" checked>
+                        <label for="low-priority2">Low</label>
+                        <input type="radio" id="low-priority" name="priority" value="Low Priority">
+                    </fieldset>
+                <div>
+                    <button id="todo-form-submit">Submit</button>
+                </div>
+                    
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    
+    <dialog id="secondary-form-dialog">
+        <div id="secondary-form" >
+            <form action="" class="project-todo-form">
+               <!-- <div class="form-title">
+                    <label for="title">Title</label>
+                    <input type="text" id="title">
+                </div> -->
+                <div class="form-description">
+                    <label for="description2">Description</label>
+                    <input type="text" id="description2">
+                </div>
+                <div class="form-dueDate">
+                    <label for="dueDate2">Due Date</label>
+                    <input type="date" id="dueDate2">
+                </div>
+                <div class="form-priority">
+                    <fieldset>
+                        <legend class="status-legend">Priority</legend>
+                        <label for="high-priority2">High</label>
+                        <input type="radio" id="high-priority2" name="priority2" value="High Priority" checked>
+                        <label for="low-priority2">Low</label>
+                        <input type="radio" id="low-priority2" name="priority2" value="Low Priority">
+                    </fieldset>
+                <div>
+                    <button id="project-todo-form-submit">Submit</button>
+                </div>
+                    
+                </div>
+            </form>
+        </div>
+    </dialog>
+    
+    <dialog id="proj-name-form-dialog">
+        <div id="proj-name-form" >
+            <form action="" class="project-form">
+                <div>
+                    <label for="project-name">Project Name</label>
+                    <input type="text" id="project-name">
+                </div>
+                <div>
+                    <button id="project-submit">Submit</button>
+                </div>
                 
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+    </dialog>
+    
 
-    <div id="secondary-form" class="form">
-        <form action="" class="project-todo-form">
-           <!-- <div class="form-title">
-                <label for="title">Title</label>
-                <input type="text" id="title">
-            </div> -->
-            <div class="form-description">
-                <label for="description2">Description</label>
-                <input type="text" id="description2">
-            </div>
-            <div class="form-dueDate">
-                <label for="dueDate2">Due Date</label>
-                <input type="date" id="dueDate2">
-            </div>
-            <div class="form-priority">
-                <fieldset>
-                    <legend class="status-legend">Priority</legend>
-                    <label for="high-priority2">High</label>
-                    <input type="radio" id="high-priority2" name="priority2" value="High Priority" checked>
-                    <label for="low-priority2">Low</label>
-                    <input type="radio" id="low-priority2" name="priority2" value="Low Priority">
-                </fieldset>
-            <div>
-                <button id="project-todo-form-submit">Submit</button>
-            </div>
-                
-            </div>
-        </form>
-    </div>
+    <dialog id="current-project-dialog">
+        <div id="currentproject"></div>
+    </dialog>
+    <dialog id="current-task-dialog">
+        <div id="currenttask"></div>
+    </dialog>
+    
 
-    <div id="proj-name-form" class="form">
-        <form action="" class="project-form">
-            <div>
-                <label for="project-name">Project Name</label>
-                <input type="text" id="project-name">
-            </div>
-            <div>
-                <button id="project-submit">Submit</button>
-            </div>
-            
-        </form>
-    </div>
-
-    <div id="currentproject"></div>
-
-    <div id="currenttask"></div>
+    
 
     
 
