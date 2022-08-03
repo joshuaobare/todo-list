@@ -784,6 +784,7 @@ currentproject.addEventListener('click', function(e){
         deleteProjects(e)
         displayProjects(e)
         currentproject.innerHTML = ""
+        currentprojectdialog.close()
     }
     if(e.target.id == "projprioritybtn") {
         projectPriority(e)
@@ -797,6 +798,7 @@ currenttask.addEventListener('click',function(e){
         deleteTasks(e)
         displayTodos(e)
         currenttask.innerHTML = ""
+        currenttaskdialog.close()
     }
 
     if(e.target.id == "taskprioritybtn") {
@@ -813,7 +815,7 @@ today.addEventListener('click', (e) => {
     taskDate()
 })
 
-/*alldialogs.forEach((dialog) => {
+alldialogs.forEach((dialog) => {
     dialog.addEventListener("click", (e)=> {
         e.stopPropagation()
         if((e.target.tagName =="DIALOG" )) {
@@ -821,16 +823,8 @@ today.addEventListener('click', (e) => {
         }
         else {
 
-        }
-        
-        
-        
-    })
+        }})
 })
 
-window.addEventListener("click", (e) => {
-        if((e.target.tagName == "DIALOG") && ())
-})
-*/
 
 export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, displayTodos, projectsToday,tasksToday,hmeBtn,sideBar}
