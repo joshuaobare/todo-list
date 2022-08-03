@@ -1,7 +1,7 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 import {projectDate,taskDate} from "./today"
-import { retrieveProjects , retrieveTasks , storeTasks} from "./storage"
-import {newtodoList} from "./index"
+import { retrieveProjects , retrieveTasks , storeProjects, storeTasks , storeTitles} from "./storage"
+import {newtodoList, projectnames} from "./index"
 
 
 
@@ -10,8 +10,9 @@ import {newtodoList} from "./index"
 
 //console.log(newtodoList)
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
-let title2, description2,dueDate2,priority2, project , projectTitle, delProj
+let title2, description2,dueDate2,priority2, project , projectTitle, delProj 
 const todos = []
+
 const projectContainer = document.querySelector("#projectContainer")
 const projectContainer2 = document.createElement("div")
 projectContainer.id = "projectContainer2"
@@ -99,6 +100,7 @@ function projSub(e) {
 function projName(e){
     e.preventDefault()
     project = document.querySelector("#project-name").value
+   // projectnames.push(project)
     return project
 }
 
@@ -345,7 +347,7 @@ function deleteProjects(e){
 
     console.log(index)
     myprojects.splice(index,1)
-    
+    storeProjects(myprojects)
     console.log(myprojects)
 
 }
@@ -385,6 +387,7 @@ function deleteProjCont(e) {
         myprojects.splice(index,1)
     })
 
+    storeProjects(myprojects)
    
     console.log(myprojects)
 }
@@ -608,7 +611,15 @@ function removeProj(e) {
             console.log(div)
             div.remove()
         }
-    })}
+    })
+    let index = projectnames.findIndex((name) => {
+        return name == e.target.className
+    })
+
+    console.log(index)
+    projectnames.splice(index,1)
+    storeTitles(projectnames)
+}
 
 // displays contents of the Today section
 
@@ -631,6 +642,16 @@ function displayToday(e) {
     rightSection.appendChild(projectContainer2)  
     
 }    
+
+function sideBar() {
+    projectnames.forEach((titles) => {
+        const newProj = document.createElement("div")
+        newProj.setAttribute("class","projectname")
+        newProj.setAttribute("id",titles)
+        newProj.innerHTML = titles
+        projSection.appendChild(newProj)
+    })
+}
 
 
 
@@ -656,16 +677,19 @@ subBtn2.addEventListener("click", function(e){
 
 } )
 
+
+
+
 projectBtn.addEventListener("click", function(e) {
     projName(e)
     projectTitle = projName(e)
     document.querySelector(".project-form").reset()
+    projectnames.push(projectTitle)
     
-    const newProj = document.createElement("div")
-    newProj.setAttribute("class","projectname")
-    newProj.setAttribute("id",projectTitle)
-    newProj.innerHTML += projectTitle
-    projSection.appendChild(newProj)
+    storeTitles(projectnames)
+    projSection.innerHTML = ""
+    sideBar()
+    
     projnameform.classList.add("form")
 
 })
@@ -754,4 +778,4 @@ today.addEventListener('click', (e) => {
     taskDate()
 })
 
-export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, displayTodos, projectsToday,tasksToday,hmeBtn}
+export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, displayTodos, projectsToday,tasksToday,hmeBtn,sideBar}

@@ -10,6 +10,10 @@ function storeTasks(x) {
     
 }
 
+function storeTitles(x) {
+    localStorage.setItem("projtitles",JSON.stringify(x))
+}
+
 function retrieveProjects() {
 
    return JSON.parse(localStorage.getItem("myprojects"))
@@ -19,4 +23,8 @@ function retrieveTasks() {
     return JSON.parse(localStorage.getItem("todoList"))
 }
 
-export { storeProjects, storeTasks, retrieveProjects , retrieveTasks }
+function retrieveTitles() {
+    return JSON.parse(localStorage.getItem("projtitles"))
+}
+
+export { storeProjects, storeTasks, retrieveProjects , retrieveTasks, storeTitles, retrieveTitles }

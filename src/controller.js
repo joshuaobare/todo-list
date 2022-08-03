@@ -1,9 +1,9 @@
 import {title, description, dueDate, priority,title2, description2,dueDate2,priority2} from './DOM.js'
 import { storeProjects, storeTasks, retrieveTasks} from './storage.js'
-import { todoList } from './index.js'
+import { todoList, myprojects } from './index.js'
 
 
-const myprojects = []
+
  
 
 
