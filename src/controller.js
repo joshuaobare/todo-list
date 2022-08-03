@@ -1,4 +1,5 @@
 import {title, description, dueDate, priority,title2, description2,dueDate2,priority2} from './DOM.js'
+import { storeProjects, storeTasks} from './storage.js'
 
 const todoList = []
 const myprojects = []
@@ -25,15 +26,19 @@ function createProjects(name) {
     let todo = new Todos(name, description2,dueDate2,priority2)
     const proj = new Projects(name,todo)
     myprojects.push(proj)
-    console.log(todo.title)
+    storeProjects(myprojects)
+    console.log(localStorage)
+
+   /* console.log(todo.title)
     console.log(proj)
-    console.log(myprojects)
+    console.log(myprojects) */
 }
 
 function inputs() {
     let newTodo = new Todos(title,description,dueDate,priority)
     todoList.push(newTodo)
-    
+    storeTasks(todoList)
+    console.log(localStorage)
     
 }
 
