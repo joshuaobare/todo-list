@@ -1,8 +1,11 @@
 import {title, description, dueDate, priority,title2, description2,dueDate2,priority2} from './DOM.js'
-import { storeProjects, storeTasks} from './storage.js'
+import { storeProjects, storeTasks, retrieveTasks} from './storage.js'
+import { todoList } from './index.js'
 
-const todoList = []
+
 const myprojects = []
+ 
+
 
 function Projects(name,project) {
     this.name = name
@@ -39,10 +42,12 @@ function inputs() {
     todoList.push(newTodo)
     storeTasks(todoList)
     console.log(localStorage)
+    /*newtodoList = retrieveTasks()
+    console.log(newtodoList)*/
     
 }
 
 
 
 
-export {inputs,createProjects,myprojects, todoList}
+export {inputs,createProjects,myprojects, todoList }

@@ -1,10 +1,16 @@
 import {inputs,todoList,myprojects,createProjects} from "./controller.js"
 import {projectDate,taskDate} from "./today"
-import { retrieveProjects , retrieveTasks} from "./storage"
+import { retrieveProjects , retrieveTasks , storeTasks} from "./storage"
+import {newtodoList} from "./index"
 
+
+
+
+
+
+//console.log(newtodoList)
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
 let title2, description2,dueDate2,priority2, project , projectTitle, delProj
-
 const todos = []
 const projectContainer = document.querySelector("#projectContainer")
 const projectContainer2 = document.createElement("div")
@@ -42,7 +48,7 @@ let taskprioritybtn = document.createElement("button")
 taskprioritybtn.innerHTML = "Priority"
 taskprioritybtn.id = "taskprioritybtn"
 
-let newTodoList = retrieveTasks()
+
 
 
 // take a guess about what elementCreator does
@@ -339,6 +345,7 @@ function deleteProjects(e){
 
     console.log(index)
     myprojects.splice(index,1)
+    
     console.log(myprojects)
 
 }
@@ -353,6 +360,7 @@ function deleteTasks(e) {
 
     console.log(index)
     todoList.splice(index,1)
+    storeTasks(todoList)
     console.log(todoList)
 }
 
@@ -746,4 +754,4 @@ today.addEventListener('click', (e) => {
     taskDate()
 })
 
-export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, projectsToday,tasksToday}
+export {title, description, dueDate, priority ,title2, description2,dueDate2,priority2, displayTodos, projectsToday,tasksToday,hmeBtn}
