@@ -292,7 +292,7 @@ function iterate(obj,tab) {
                         individualproj.classList.add(individualprojid)
                     }
                     let div = document.createElement("div")
-                    div.innerHTML = `${obj[key]} <br>`
+                    div.innerHTML = `${obj[key]}`
                     individualproj.appendChild(div)
                     projectContainer.appendChild(individualproj)
                                                                       
@@ -339,7 +339,7 @@ function projectsToday(obj,tab) {
                         thisproj.classList.add(thisprojid)
                     }
                     let div = document.createElement("div")
-                    div.innerHTML = `${obj[key]} <br>`
+                    div.innerHTML = `${obj[key]}`
                     thisproj.appendChild(div)
                     projectContainer.appendChild(thisproj)
 
@@ -638,6 +638,7 @@ function removeProj(e) {
 function displayToday(e) {
     rightSection.innerHTML = ""
     projectHeader.innerHTML = "Today"
+    projectHeader.classList.add("homeHeading")
     projectDate(e)
     // projectContainer.innerHTML = ""
     rightSection.appendChild(projectHeader)

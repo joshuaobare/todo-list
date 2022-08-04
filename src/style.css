@@ -1,10 +1,17 @@
+@font-face {
+    font-family:baufra ;
+    src: url(./fonts/BaufraBold.ttf);
+}
+
 body {
     margin: 0;
+    overflow: hidden;
 }
 #container {
     display: flex;
     color: #D92121;
     flex-direction: column;
+    font-family: monospace;
 }
 
 #main {
@@ -13,13 +20,17 @@ body {
 
 #rightSection {
     flex-grow:4;
-    border: 2px solid black;
-    padding-left: 10px;
+    border-left: 2px solid black;
+    padding-left: 100px;
+    
 }
 
 #header {
     background-color: black; 
     color: gold;
+    text-transform: uppercase;
+    font-family: baufra;
+    
 }
 .todo-form , .project-todo-form{
     display: flex;
@@ -38,6 +49,7 @@ body {
 .projectname {
     margin-left: 20px;
     font-size: 1.25em;
+    padding: 5px;
 }
 
 .projectname:hover, .home:hover, .today:hover {
@@ -49,14 +61,16 @@ body {
     display: flex;
     flex-direction: column;
     gap:20px;
-    width: 200px;
+    width: 20vw;
     padding: 10px;
-   
+    background-color: rgb(0, 0, 0,10%);
+    padding-left: 20px;
+    padding-top: 30px;
 
 }
 
 .navbar-title {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: black;
 
 }
@@ -79,7 +93,12 @@ footer {
 .home-todos, .project-todos {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding-right: 100px;
+    padding-left: 20px;
+    padding-top:20px ;
+    padding-bottom: 20px;
+    font-size: 1.5em;
+    
 }
 
 .home-todos:hover, .project-todos:hover {
@@ -103,9 +122,55 @@ footer {
 }
 
 #rightSection, #navBar {
-    height: 100%;
+    height: 100vh;
 }
 
 #main-form-dialog, #secondary-form-dialog {
     width: 200px;
+}
+
+.homeHeading,#homeHeading {
+    font-size: 2em;
+    color: black;
+    text-transform:uppercase;
+    font-family: baufra;
+}
+
+#home, #today{
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 4fr;
+    justify-content: center;
+    align-items: center;
+    
+}
+#createproject {
+    display: flex;
+    gap: 5px;
+    color: black;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.25em;
+}
+
+#createproject:hover {
+    color: rgb(0, 0, 0,80%);
+}
+
+#projectSection {
+    margin-top: 10px;
+}
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+#addtask {
+    margin-left: 20px;
+    margin-top: 20px;
 }
