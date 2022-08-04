@@ -454,7 +454,10 @@ function displayProjects(e) {
 // projectParser displays the full details of each individual project
 
 function projectParser(obj) {
-    
+    let btncont = document.createElement("div")
+    btncont.classList.add("btncont")
+    let topcont =  document.createElement("div")
+    topcont.classList.add("topcont")
     Object.keys(obj).forEach(key => {
 
     let proj_line = document.createElement("div")
@@ -488,19 +491,26 @@ function projectParser(obj) {
                 }
                 let div = document.createElement("div")
                
-                div.innerHTML += `${capitalizeFirstLetter(key)}` + ": "  
+                div.innerHTML += `<span style="color:black";>${capitalizeFirstLetter(key)}: </span>`  
                 div.innerHTML += `${obj[key]}`
                 proj_line.appendChild(div)
-                proj_line.appendChild(delbtn)
-                proj_line.appendChild(projprioritybtn)
-                currentproject.appendChild(proj_line)
-                
+
+                btncont.appendChild(delbtn)
+                btncont.appendChild(projprioritybtn)
+                topcont.appendChild(proj_line)
+                currentproject.appendChild(topcont)
+                currentproject.appendChild(btncont)
             }     
     }})}
 
 // displays the full details of each task    
 
 function taskParser(obj) {
+    let btncont = document.createElement("div")
+    btncont.classList.add("btncont")
+    let topcont =  document.createElement("div")
+    topcont.classList.add("topcont")
+
     Object.keys(obj).forEach(key => {
 
         
@@ -532,12 +542,14 @@ function taskParser(obj) {
                 }
 
                 let div = document.createElement("div")
-                div.innerHTML += `${capitalizeFirstLetter(key)}` + ": "  
+                div.innerHTML += `<span style="color:black";>${capitalizeFirstLetter(key)}: </span>`  
                 div.innerHTML += `${obj[key]}`
                 task_line.appendChild(div)
-                task_line.appendChild(taskdelbtn)
-                task_line.appendChild(taskprioritybtn)
-                currenttask.appendChild(task_line)
+                btncont.appendChild(taskdelbtn)
+                btncont.appendChild(taskprioritybtn)
+                topcont.appendChild(task_line)
+                currenttask.appendChild(topcont)
+                currenttask.appendChild(btncont)
         }
         })
     }

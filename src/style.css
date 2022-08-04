@@ -108,9 +108,16 @@ footer {
     border-radius: 5px;
 }
 
-#currentproject {
+#currentproject, #currenttask {
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    gap: 10px;
+    color: #D92121;
+    font-family: monospace;
+    width: 300px;
+    height: 300px;
+    font-size: 1.25em;
 }
 
 #delbtn {
@@ -173,4 +180,17 @@ button {
 #addtask {
     margin-left: 20px;
     margin-top: 20px;
+}
+
+.btncont {
+    display: flex;
+    justify-content: space-between;
+    justify-self: end;
+   
+}
+.topcont {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    height: 250px;
 }
