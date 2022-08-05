@@ -49,11 +49,6 @@ let taskprioritybtn = document.createElement("button")
 taskprioritybtn.innerHTML = "Priority"
 taskprioritybtn.id = "taskprioritybtn"
 
-const checkbx2 = document.createElement("input")
-checkbx2.type = "checkbox"
-const checkbxcont = document.createElement("div")
-checkbxcont.appendChild(checkbx2)
-
 
 // take a guess about what elementCreator does
 function elementCreator(el,type,class_name,id_name,innertext) {
@@ -122,6 +117,7 @@ function displayTodos() {
 
         checkbx = document.createElement("input")
         checkbx.type = "checkbox"
+        checkbx.classList.add("checkbx")
         todos[x].appendChild(checkbx)
 
         for(let y in todoList[x]) {
@@ -173,6 +169,7 @@ function tasksToday(array) {
 
         checkbx = document.createElement("input")
         checkbx.type = "checkbox"
+        checkbx.classList.add("checkbx")
         todos[x].appendChild(checkbx)
 
         for(let y in array[x]) {
@@ -269,6 +266,7 @@ function iterate(obj,tab) {
 
     checkbx = document.createElement("input")
         checkbx.type = "checkbox"
+        checkbx.classList.add("checkbx")
         individualproj.appendChild(checkbx)
 
     // the if block prevents adding another delete button each time the project's tab is clicked 
@@ -336,6 +334,7 @@ function projectsToday(obj,tab) {
        
         checkbx = document.createElement("input")
         checkbx.type = "checkbox"
+        checkbx.classList.add("checkbx")
         thisproj.appendChild(checkbx)
 
 
@@ -818,7 +817,6 @@ rightSection.addEventListener('click', function(e) {
     }
     if(e.target.classList.contains("project-todos")){
         currentproject.innerHTML = ""
-        
         fetchProject(e)
         currentprojectdialog.showModal()
 
@@ -851,6 +849,15 @@ rightSection.addEventListener('click', function(e) {
         deleteProjCont(e)
         hmeBtn()
         removeProj(e)
+    }
+    if(e.target.classList.contains("checkbx")){
+        if(e.target.parentNode.classList.contains("strike")){
+            e.target.parentNode.classList.remove("strike")
+        }
+        else {
+            e.target.parentNode.classList.add("strike")
+        }
+        
     }
 
   } );
