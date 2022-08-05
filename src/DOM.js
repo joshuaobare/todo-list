@@ -180,6 +180,7 @@ function tasksToday(array) {
             if ((y === "title") || (y === "dueDate")) {
 
                 div = document.createElement("div")
+                div.classList.add("home-todo-element")
                 div.innerHTML += array[x][y] + "&emsp;"
 
                 try {
@@ -251,7 +252,7 @@ function iterate(obj,tab) {
     individualproj = document.createElement('div')
     let projbtncont = document.createElement("div")
     projbtncont.classList.add("projbtncont")
-
+    let checkbx
     // projnamecont holds the name of the current project name, this is set to the project tab's heading
 
     projectHeader.innerHTML = projnamecont
@@ -264,6 +265,11 @@ function iterate(obj,tab) {
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
     projbtncont.appendChild(addTask)
+
+
+    checkbx = document.createElement("input")
+        checkbx.type = "checkbox"
+        individualproj.appendChild(checkbx)
 
     // the if block prevents adding another delete button each time the project's tab is clicked 
 
@@ -310,6 +316,7 @@ function iterate(obj,tab) {
                         individualproj.classList.add(individualprojid)
                     }
                     let div = document.createElement("div")
+                    div.classList.add("project-todo-element")
                     div.innerHTML = `${obj[key]}`
                     individualproj.appendChild(div)
                     projectContainer.appendChild(individualproj)
@@ -325,8 +332,12 @@ function iterate(obj,tab) {
 function projectsToday(obj,tab) {
     rightSection.innerHTML = ""
     let thisproj = document.createElement('div')
-    let thisprojid
+    let thisprojid,checkbx
        
+        checkbx = document.createElement("input")
+        checkbx.type = "checkbox"
+        thisproj.appendChild(checkbx)
+
 
     Object.keys(obj).forEach(key => {
 
@@ -357,6 +368,7 @@ function projectsToday(obj,tab) {
                         thisproj.classList.add(thisprojid)
                     }
                     let div = document.createElement("div")
+                    div.classList.add("project-todo-element")
                     div.innerHTML = `${obj[key]}`
                     thisproj.appendChild(div)
                     projectContainer.appendChild(thisproj)
@@ -576,6 +588,7 @@ function taskParser(obj) {
 
 function fetchTasks(e) {
     let taskclass
+
     try {
         taskclass = e.target.classList
     }
@@ -609,7 +622,14 @@ function fetchTasks(e) {
 }
 
 function fetchProject(e) {
-    let projclasses = e.target.classList
+    let projclasses
+
+    try {
+        projclasses = e.target.classList  
+    }
+    catch {
+        projclasses = e.classList
+    }
     console.log(projclasses)
     let current_desc = projclasses[0] 
     console.log(current_desc)
@@ -803,6 +823,15 @@ rightSection.addEventListener('click', function(e) {
         currentprojectdialog.showModal()
 
     }
+
+    if(e.target.classList.contains("project-todo-element")){
+        console.log(e.target.parentNode.classList)
+        currentproject.innerHTML = ""
+        e = e.target.parentNode
+        fetchProject(e)
+        currentprojectdialog.showModal()
+    }    
+
     if(e.target.classList.contains("home-todos")){
         console.log(e)
         currenttask.innerHTML = ""
