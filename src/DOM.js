@@ -4,11 +4,6 @@ import { retrieveProjects , retrieveTasks , storeProjects, storeTasks , storeTit
 import {newtodoList, projectnames} from "./index"
 
 
-
-
-
-
-//console.log(newtodoList)
 let title, description, dueDate, priority,projnamecont,projarr , individualproj, individualprojid
 let title2, description2,dueDate2,priority2, project , projectTitle, delProj 
 const todos = []
@@ -54,7 +49,10 @@ let taskprioritybtn = document.createElement("button")
 taskprioritybtn.innerHTML = "Priority"
 taskprioritybtn.id = "taskprioritybtn"
 
-
+const checkbx2 = document.createElement("input")
+checkbx2.type = "checkbox"
+const checkbxcont = document.createElement("div")
+checkbxcont.appendChild(checkbx2)
 
 
 // take a guess about what elementCreator does
@@ -113,20 +111,31 @@ function projName(e){
 
 function displayTodos() {
     projectContainer.innerHTML = ""
+    let checkbx
 
     for (let x=0 ; x< todoList.length ;x++) {
         
         todos[x] = document.createElement("div")
+        
        
-        let div,z
+        let div,z 
+
+        checkbx = document.createElement("input")
+        checkbx.type = "checkbox"
+        todos[x].appendChild(checkbx)
 
         for(let y in todoList[x]) {
 
             // just the title and dueDate are added to divs
-
+                          
+               
+               
             if ((y === "title") || (y === "dueDate")) {
 
+                
                 div = document.createElement("div")
+                //div.appendChild(checkbxcont)
+                
                 div.innerHTML += todoList[x][y] + "&emsp;"
 
                 /* each div will have the task title as its class.
@@ -141,9 +150,11 @@ function displayTodos() {
                 }
             }                       
             
+            
+            //todos[x].appendChild(div2)
             todos[x].appendChild(div)                
         }     
-              
+             
         projectContainer.appendChild(todos[x])
     } 
     
