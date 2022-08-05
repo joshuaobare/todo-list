@@ -93,6 +93,7 @@
     
     <dialog id="secondary-form-dialog">
         <div id="secondary-form" >
+            <legend class="secondary-form-legend">Add Task To Project</legend>
             <form action="" class="project-todo-form">
                <!-- <div class="form-title">
                     <label for="title">Title</label>
@@ -108,18 +109,25 @@
                     <input type="date" id="dueDate2">
                 </div>
                 <div class="form-priority">
-                    <fieldset>
+                    <fieldset class="fs-fp">
                         <legend class="status-legend">Priority</legend>
-                        <label for="high-priority2">High</label>
-                        <input type="radio" id="high-priority2" name="priority2" value="High Priority" checked>
-                        <label for="low-priority2">Low</label>
-                        <input type="radio" id="low-priority2" name="priority2" value="Low Priority">
+                        <div class="fs-fp-item">
+                            <label for="high-priority2">High</label>
+                            <input type="radio" id="high-priority2" name="priority2" value="High Priority" checked>
+                        </div>
+                        <div class="fs-fp-item">
+                            <label for="low-priority2">Low</label>
+                            <input type="radio" id="low-priority2" name="priority2" value="Low Priority">
+                        </div>
+                        
+                        
                     </fieldset>
+                </div>
                 <div>
                     <button id="project-todo-form-submit">Submit</button>
                 </div>
                     
-                </div>
+                
             </form>
         </div>
     </dialog>
@@ -127,8 +135,8 @@
     <dialog id="proj-name-form-dialog">
         <div id="proj-name-form" >
             <form action="" class="project-form">
+                <legend class="proj-name-form-legend">Project Name</legend>
                 <div>
-                    <label for="project-name">Project Name</label>
                     <input type="text" id="project-name">
                 </div>
                 <div>
