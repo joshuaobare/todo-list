@@ -39,11 +39,11 @@ const alldialogs = document.querySelectorAll("dialog")
 const projecttab = document.querySelectorAll(".projectname")
 const projectHeader = document.createElement("h1")
 let delbtn = document.createElement("button")
-delbtn.innerHTML = "x"
+delbtn.innerHTML = "Delete"
 delbtn.id = "delbtn"
 
 let taskdelbtn = document.createElement("button")
-taskdelbtn.innerHTML = "x"
+taskdelbtn.innerHTML = "Delete"
 taskdelbtn.id = "taskdelbtn"
 
 let projprioritybtn = document.createElement("button")
@@ -233,6 +233,8 @@ function taskPriority(e) {
 function iterate(obj,tab) {
     rightSection.innerHTML = ""
     individualproj = document.createElement('div')
+    let projbtncont = document.createElement("div")
+    projbtncont.classList.add("projbtncont")
 
     // projnamecont holds the name of the current project name, this is set to the project tab's heading
 
@@ -245,7 +247,7 @@ function iterate(obj,tab) {
         
     rightSection.appendChild(projectHeader)
     rightSection.appendChild(projectContainer)
-    rightSection.appendChild(addTask)
+    projbtncont.appendChild(addTask)
 
     // the if block prevents adding another delete button each time the project's tab is clicked 
 
@@ -253,10 +255,10 @@ function iterate(obj,tab) {
         return
     }
     else {
-        rightSection.appendChild(delProj)
+        projbtncont.appendChild(delProj)
         }
     
-    
+    rightSection.appendChild(projbtncont)
     // this function loops through each object and its contents and displays them onto projectContainer
 
     Object.keys(obj).forEach(key => { 

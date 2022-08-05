@@ -11,7 +11,8 @@ body {
     display: flex;
     color: #D92121;
     flex-direction: column;
-    font-family: monospace;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: lighter;
 }
 
 #main {
@@ -30,6 +31,7 @@ body {
     color: gold;
     text-transform: uppercase;
     font-family: baufra;
+    font-weight:bolder;
     
 }
 .todo-form , .project-todo-form{
@@ -37,7 +39,8 @@ body {
     flex-direction: column;
     gap:10px;
     width: 100px;
-    color: blue;
+    color: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form {
@@ -82,12 +85,14 @@ body {
 
 footer {
     background-color: black;
-    color: white;
+    color: gold;
+    font-weight: lighter;
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 10px;
+    font-family: baufra;
 }
 
 .home-todos, .project-todos {
@@ -158,7 +163,7 @@ footer {
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
-    font-size: 1.25em;
+    font-size: 1.2em;
 }
 
 #createproject:hover {
@@ -193,4 +198,52 @@ button {
     gap: 10px;
     flex-direction: column;
     height: 250px;
+}
+.projbtncont {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    
+}
+
+.proj-titl {
+    font-weight: bolder;
+}
+
+#main-form-dialog {
+    width: 300px;
+    height: 500px;
+
+}
+#description {
+    height: 200px;
+    width: 300px;
+}
+
+.todo-form input[type="text"] {
+    width: 300px;
+    height: 20px;
+}
+
+.form-priority {
+    width: 304px;
+}
+
+.fs-fp {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    
+}
+.fs-fp-item {
+    display: flex;
+}
+.todo-form-legend {
+    text-align: center;
+    width: 300px;
+    font-size: 1.75em;
+    font-family: baufra;
+}
+.status-legend {
+    text-align: center;
 }
