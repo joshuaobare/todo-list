@@ -134,6 +134,7 @@ function displayTodos() {
 
                 
                 div = document.createElement("div")
+                div.classList.add("home-todo-element")
                 //div.appendChild(checkbxcont)
                 
                 div.innerHTML += todoList[x][y] + "&emsp;"
@@ -168,7 +169,11 @@ function tasksToday(array) {
         
         todos[x] = document.createElement("div")
        
-        let div,z
+        let div,z,checkbx
+
+        checkbx = document.createElement("input")
+        checkbx.type = "checkbox"
+        todos[x].appendChild(checkbx)
 
         for(let y in array[x]) {
 
@@ -570,7 +575,15 @@ function taskParser(obj) {
 
 
 function fetchTasks(e) {
-    let taskclass = e.target.classList
+    let taskclass
+    try {
+        taskclass = e.target.classList
+    }
+    
+    catch {
+        taskclass = e.classList
+    }
+
     let current_title = taskclass[0]
 
     const x = todoList.filter(function(task){
@@ -777,7 +790,7 @@ projSection.addEventListener('click', function(e) {
   
 
 rightSection.addEventListener('click', function(e) {
-    console.log(e) 
+    console.log(e.target) 
     if(e.target.id == "proj-task-btn") {
         projecttodoform.classList.remove("form")
         secondaryformdialog.showModal()
@@ -791,10 +804,20 @@ rightSection.addEventListener('click', function(e) {
 
     }
     if(e.target.classList.contains("home-todos")){
+        console.log(e)
         currenttask.innerHTML = ""
         fetchTasks(e)
         currenttaskdialog.showModal()
     }
+
+    if(e.target.classList.contains("home-todo-element")){
+        console.log(e.target.parentNode.classList)
+        currenttask.innerHTML = ""
+        e = e.target.parentNode
+        fetchTasks(e)
+        currenttaskdialog.showModal()
+    }
+
     if(e.target.id == "delProj"){
         deleteProjCont(e)
         hmeBtn()

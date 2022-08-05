@@ -95,7 +95,18 @@ footer {
     font-family: baufra;
 }
 
-.home-todos, .project-todos {
+.home-todos {
+    display: grid;
+    grid-template-columns: .5fr 8fr 2fr;
+    padding-right: 100px;
+    padding-left: 20px;
+    padding-top:20px ;
+    padding-bottom: 20px;
+    font-size: 1.5em;
+    align-items: center;
+}
+
+.project-todos {
     display: flex;
     justify-content: space-between;
     padding-right: 100px;
