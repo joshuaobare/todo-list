@@ -210,13 +210,19 @@ button {
     font-weight: bolder;
 }
 
-#main-form-dialog {
-    width: 300px;
+#main-form-dialog, #secondary-form-dialog {
+    width: 305px;
     height: 500px;
+    
 
 }
-#description {
+#description  {
     height: 200px;
+    width: 300px;
+}
+
+#description2 {
+    height: 270px;
     width: 300px;
 }
 
@@ -246,4 +252,22 @@ button {
 }
 .status-legend {
     text-align: center;
+}
+
+label {
+    color: #D92121;
+}
+
+.secondary-form-legend, .proj-name-form-legend {
+    text-align: center;
+    font-family: baufra;
+    font-size: 1.75em;
+}
+.proj-name-form-legend {
+    font-size: 1.5em;
+}
+.project-form {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
 }
