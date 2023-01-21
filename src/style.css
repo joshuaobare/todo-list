@@ -54,12 +54,21 @@ body {
     display: none;
 }
 
+.addProject-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 .projectname {
     margin-left: 20px;
     font-size: 1.25em;
     padding: 5px;
+}
+
+.projectname , .home,.today {
+    transition: transform 100ms ease-in-out;
 }
 
 .projectname:hover, .home:hover, .today:hover {
@@ -112,6 +121,16 @@ footer {
     padding-bottom: 20px;
     font-size: 1.25em;
     align-items: center;
+    transition: text-decoration 1s ease-in-out;
+    
+}
+
+
+
+.strike {
+    text-decoration: line-through;
+    text-decoration-color: black;
+    opacity: 40%;
 }
 /*
 .project-todos {
@@ -183,6 +202,8 @@ footer {
     cursor: pointer;
     font-size: 1.2em;
 }
+
+
 
 #createproject:hover {
     color: rgb(0, 0, 0,80%);
@@ -296,11 +317,7 @@ label {
     gap:10px;
 }
 
-.strike {
-    text-decoration: line-through;
-    text-decoration-color: black;
-    opacity: 40%;
-}
+
 
 @media (max-width:600px) {
 
@@ -316,14 +333,18 @@ label {
     #navBar {
         width: 100vw - 20px;        
         height: auto;
-        display: none;
-        transition: display .3s ease-in-out opacity .4s ease 
-        
+        display: none;       
+        border-left: 2px solid black;
+
     }
 
     #navBar.show {
         display: flex;
         /* transform: translate(-50%, -100%); */
+    }
+
+    .navbar-title {
+        font-size: 20px;
     }
     
     .header-nav-icon {
@@ -337,7 +358,8 @@ label {
         flex: 2;
     }
 
-    .material-symbols-outlined {
+
+    .material-symbols-outlined.menu {
         padding-left: 40px;
     }
     #main {
@@ -379,5 +401,10 @@ label {
 
     #home , #today {
         grid-template-columns: .125fr 1fr;
+    }
+
+    footer {
+        font-size: 12px;
+        padding: 5px;
     }
 }
