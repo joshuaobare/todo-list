@@ -32,6 +32,8 @@ const currentprojectdialog = document.querySelector("#current-project-dialog")
 const currenttaskdialog = document.querySelector("#current-task-dialog")
 const alldialogs = document.querySelectorAll("dialog")
 const projecttab = document.querySelectorAll(".projectname")
+const navIcon = document.querySelector(".header-nav-icon")
+const navBar = document.querySelector("#navBar")
 const projectHeader = document.createElement("h1")
 let delbtn = document.createElement("button")
 delbtn.innerHTML = "Delete"
@@ -898,6 +900,14 @@ today.addEventListener('click', (e) => {
     displayToday(e)
     projectContainer2.innerHTML = ""
     taskDate()
+})
+
+navIcon.addEventListener('click' , () => {
+    if(navBar.classList.contains("show")){
+        navBar.classList.remove("show")
+    } else {
+        navBar.classList.add("show")
+    }
 })
 
 alldialogs.forEach((dialog) => {
