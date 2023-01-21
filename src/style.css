@@ -32,7 +32,14 @@ body {
     text-transform: uppercase;
     font-family: baufra;
     font-weight:bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
+}
+
+.header-nav-icon {
+    display: none;
 }
 .todo-form , .project-todo-form{
     display: flex;

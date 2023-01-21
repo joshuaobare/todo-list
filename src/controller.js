@@ -3,10 +3,6 @@ import { storeProjects, storeTasks, retrieveTasks} from './storage.js'
 import { todoList, myprojects } from './index.js'
 
 
-
- 
-
-
 function Projects(name,project) {
     this.name = name
     this.project = project
