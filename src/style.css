@@ -89,7 +89,7 @@ body {
 }
 
 .navbar-title {
-    font-size: 1.5em;
+    font-size: 1.25em;
     color: black;
 
 }
@@ -188,7 +188,7 @@ footer {
 #home, #today{
     display: grid;
     gap: 5px;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: .5fr 4fr;
     justify-content: center;
     align-items: center;
     
@@ -221,16 +221,17 @@ button {
     font-weight: bolder;
     font: monospace;
 }
-
+/*
 #addtask {
     margin-left: 20px;
     margin-top: 20px;
 }
 
-.addtask-cont {
+ .addtask-cont {
     display: flex;
     justify-content: center;
-}
+    align-items: center;
+} */
 
 .btncont {
     display: flex;
@@ -317,6 +318,23 @@ label {
     gap:10px;
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
+  .material-symbols-outlined.home , .material-symbols-outlined.today-icon{
+    font-size: 30px;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 48
+}
+
 
 
 @media (max-width:600px) {
@@ -369,9 +387,58 @@ label {
     #rightSection {
         padding: 10px;
         display: flex;
-        flex-direction: column;
+        flex-direction: column;     
+               
+    }
+
+    .material-symbols-outlined.home , .material-symbols-outlined.today-icon  {
+        font-size: 24px;
+        font-variation-settings:
+    'FILL' 1,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 48
+    }
+
+    #main-form {
+        width: fit-content ;
+    }
+
+    .todo-form-legend {
+        max-width: 250px;
+    }
+    .form-title , #description , .form-priority {
+        max-width: 250px;
+    }
+
+    #description {
+        height: auto;
+    }
+
+    .todo-form input[type="text"] {
         
-       
+        max-width: 250px;
+    }
+
+    .todo-form, .project-todo-form {
+        max-width: 250px;
+    }
+
+    #main-form-dialog, #secondary-form-dialog {
+        max-width: 250px;
+        height: fit-content;
+        
+    }
+
+    #description2 {
+        max-width: 250px;
+        height: auto;
+    }
+
+    .addtask-cont {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .homeHeading,.homeHeader {
@@ -394,6 +461,9 @@ label {
 
     #addtask {
         align-self: center;
+        justify-self: center;
+        margin-left: 0;
+        margin-top: 0;
     }
     .home-icon-cont, .today-icon-cont {
         width: fit-content;
